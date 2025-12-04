@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplos Práticos de HTML - FrontEnd Master Path</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Estilos específicos para a página de exemplos HTML */
+      .exemplos-container {
+        padding-top: 120px;
+        min-height: 100vh;
+        background: var(--bg-primary);
+      }
+
+      .exemplos-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding: 40px 20px;
+        background: var(--gradient-dark);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .exemplos-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #e34c26, #f06529);
+      }
+
+      .categorias-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 50px;
+      }
+
+      .categoria-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .categoria-card:hover {
+        transform: translateY(-5px);
+        border-color: #e34c26;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .categoria-card i {
+        font-size: 2.5rem;
+        color: #e34c26;
+        margin-bottom: 15px;
+      }
+
+      .categoria-card h3 {
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .categoria-card p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .exemplo-section {
+        margin-bottom: 80px;
+        scroll-margin-top: 100px;
+      }
+
+      .exemplo-titulo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .exemplo-titulo i {
+        color: #e34c26;
+      }
+
+      .exemplo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      @media (max-width: 992px) {
+        .exemplo-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .exemplo-codigo {
+        background: #1e1e2e;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+      }
+
+      .exemplo-codigo-header {
+        background: rgba(227, 76, 38, 0.1);
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .exemplo-codigo-header span {
+        color: var(--text-secondary);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+      }
+
+      .btn-copiar {
+        background: rgba(227, 76, 38, 0.2);
+        color: #e34c26;
+        border: 1px solid rgba(227, 76, 38, 0.3);
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn-copiar:hover {
+        background: rgba(227, 76, 38, 0.3);
+      }
+
+      .exemplo-codigo pre {
+        margin: 0;
+        padding: 20px;
+        overflow-x: auto;
+        max-height: 400px;
+      }
+
+      .exemplo-codigo code {
+        color: #f8f8f2;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .exemplo-visualizacao {
+        background: white;
+        border-radius: var(--border-radius);
+        padding: 25px;
+        border: 1px solid #ddd;
+        min-height: 300px;
+        overflow: auto;
+      }
+
+      .exemplo-descricao {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        border: 1px solid var(--border-color);
+        margin-top: 20px;
+      }
+
+      .exemplo-descricao h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        color: var(--text-primary);
+      }
+
+      .pontos-chave {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .ponto-chave {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 15px;
+        border-left: 3px solid #e34c26;
+      }
+
+      .ponto-chave strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--text-primary);
+      }
+
+      .ponto-chave p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .comparacao-container {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        border: 1px solid var(--border-color);
+        margin-top: 40px;
+      }
+
+      .comparacao-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 25px;
+      }
+
+      .comparacao-item {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      .comparacao-item h4 {
+        color: #e34c26;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .comparacao-item ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+
+      .comparacao-item li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+        color: var(--text-secondary);
+      }
+
+      .comparacao-item li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #00ff88;
+      }
+
+      .demonstracao-interativa {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        margin: 30px 0;
+        border: 1px solid rgba(227, 76, 38, 0.3);
+      }
+
+      .controles-demo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .btn-demo {
+        background: rgba(227, 76, 38, 0.2);
+        border: 1px solid rgba(227, 76, 38, 0.3);
+        color: var(--text-primary);
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.9rem;
+      }
+
+      .btn-demo:hover {
+        background: rgba(227, 76, 38, 0.3);
+      }
+
+      .btn-demo.ativo {
+        background: #e34c26;
+        color: white;
+      }
+
+      .area-demo {
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        min-height: 200px;
+        border: 2px dashed #ddd;
+      }
+
+      .projeto-completo {
+        background: var(--gradient-dark);
+        border-radius: var(--border-radius);
+        padding: 40px;
+        margin-top: 60px;
+        border: 1px solid var(--border-color);
+      }
+
+      .projeto-codigo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .projeto-codigo {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .editor-interativo {
+        background: #1e1e2e;
+        border-radius: 8px;
+        padding: 20px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        min-height: 300px;
+        max-height: 400px;
+        overflow: auto;
+        border: 1px solid var(--border-color);
+      }
+
+      .editor-interativo:focus {
+        outline: 2px solid #e34c26;
+      }
+
+      .preview-container {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        min-height: 300px;
+        overflow: auto;
+      }
+
+      .controles-editor {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .btn-editor {
+        background: linear-gradient(90deg, #e34c26, #f06529);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-editor:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(227, 76, 38, 0.3);
+      }
+
+      .exercicios-praticos {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        margin-top: 40px;
+        border: 1px solid var(--border-color);
+      }
+
+      .exercicio {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 4px solid #e34c26;
+      }
+
+      .exercicio h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .exercicio p {
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+      }
+
+      .dica {
+        background: rgba(240, 219, 79, 0.1);
+        border: 1px solid rgba(240, 219, 79, 0.3);
+        border-radius: 6px;
+        padding: 15px;
+        margin-top: 20px;
+      }
+
+      .dica h5 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #f0db4f;
+        margin-bottom: 10px;
+      }
+
+      .recursos-rapidos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .recurso-rapido {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .recurso-rapido:hover {
+        border-color: #e34c26;
+        transform: translateY(-3px);
+      }
+
+      .recurso-rapido h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .recurso-rapido p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Estilos específicos para exemplos HTML */
+      .tag-exemplo {
+        color: #e34c26;
+      }
+
+      .atributo-exemplo {
+        color: #9cdcfe;
+      }
+
+      .valor-exemplo {
+        color: #ce9178;
+      }
+
+      .comentario-exemplo {
+        color: #6a9955;
+      }
+
+      /* Animações */
+      @keyframes highlight {
+        0% {
+          background-color: rgba(227, 76, 38, 0.1);
+        }
+        100% {
+          background-color: transparent;
+        }
+      }
+
+      .highlight {
+        animation: highlight 2s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-in {
+        animation: slideIn 0.6s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-code"></i>
+          <span>FrontEnd<span class="logo-accent">Master</span>Path</span>
+        </div>
+        <div class="nav-links">
+          <a href="../index.html" class="nav-link"
+            ><i class="fas fa-home"></i> Início</a
+          >
+          <a href="../pages/html-course.html" class="nav-link"
+            ><i class="fab fa-html5"></i> Curso HTML</a
+          >
+          <a href="#estrutura" class="nav-link active"
+            ><i class="fas fa-sitemap"></i> Estrutura</a
+          >
+          <a href="#semantica" class="nav-link"
+            ><i class="fas fa-code"></i> Semântica</a
+          >
+          <a href="#formularios" class="nav-link"
+            ><i class="fas fa-edit"></i> Formulários</a
+          >
+          <a href="../index.html#laboratorio" class="nav-link"
+            ><i class="fas fa-flask"></i> Laboratório</a
+          >
+        </div>
+        <button class="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <main class="exemplos-container">
+      <div class="container">
+        <!-- Cabeçalho -->
+        <header class="exemplos-header">
+          <div
+            class="curso-badge"
+            style="
+              background: rgba(227, 76, 38, 0.1);
+              border-color: rgba(227, 76, 38, 0.3);
+            "
+          >
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+          </div>
+          <h1>Exemplos Práticos de HTML</h1>
+          <p class="curso-descricao">
+            Aprenda HTML através de exemplos reais, demonstrações interativas e
+            código que você pode copiar e modificar.
+          </p>
+
+          <div class="curso-metadata">
+            <div class="meta-item">
+              <i class="fas fa-file-code"></i>
+              <span>50+ exemplos de código</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-play-circle"></i>
+              <span>Demonstrações interativas</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-clipboard-check"></i>
+              <span>Exercícios práticos</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Categorias Rápidas -->
+        <div class="categorias-grid">
+          <div class="categoria-card" onclick="scrollToSection('estrutura')">
+            <i class="fas fa-sitemap"></i>
+            <h3>Estrutura Básica</h3>
+            <p>DOCTYPE, head, body e elementos essenciais</p>
+          </div>
+
+          <div class="categoria-card" onclick="scrollToSection('semantica')">
+            <i class="fas fa-code"></i>
+            <h3>Tags Semânticas</h3>
+            <p>header, nav, section, article, footer</p>
+          </div>
+
+          <div class="categoria-card" onclick="scrollToSection('texto')">
+            <i class="fas fa-font"></i>
+            <h3>Texto e Formatação</h3>
+            <p>Cabeçalhos, parágrafos, listas, formatação</p>
+          </div>
+
+          <div class="categoria-card" onclick="scrollToSection('midia')">
+            <i class="fas fa-image"></i>
+            <h3>Mídia</h3>
+            <p>Imagens, áudio, vídeo e iframes</p>
+          </div>
+
+          <div class="categoria-card" onclick="scrollToSection('tabelas')">
+            <i class="fas fa-table"></i>
+            <h3>Tabelas</h3>
+            <p>Tabelas complexas com colspan e rowspan</p>
+          </div>
+
+          <div class="categoria-card" onclick="scrollToSection('formularios')">
+            <i class="fas fa-edit"></i>
+            <h3>Formulários</h3>
+            <p>Inputs, validação, campos avançados</p>
+          </div>
+        </div>
+
+        <!-- Exemplo: Estrutura Básica -->
+        <section id="estrutura" class="exemplo-section">
+          <h2 class="exemplo-titulo">
+            <i class="fas fa-sitemap"></i> Estrutura Básica HTML
+          </h2>
+
+          <div class="exemplo-grid">
+            <div class="exemplo-codigo">
+              <div class="exemplo-codigo-header">
+                <span>estrutura-basica.html</span>
+                <button
+                  class="btn-copiar"
+                  onclick="copiarCodigo('codigo-estrutura')"
+                >
+                  <i class="fas fa-copy"></i> Copiar
+                </button>
+              </div>
+              <pre><code id="codigo-estrutura">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Minha Primeira Página&lt;/title&gt;
+    &lt;meta name="description" content="Uma página web de exemplo"&gt;
+    &lt;meta name="keywords" content="HTML, exemplo, aprendizado"&gt;
+    &lt;meta name="author" content="Seu Nome"&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Conteúdo da página vai aqui --&gt;
+    &lt;h1&gt;Olá, Mundo!&lt;/h1&gt;
+    &lt;p&gt;Esta é minha primeira página HTML.&lt;/p&gt;
+    
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="exemplo-visualizacao">
+              <h1>Olá, Mundo!</h1>
+              <p>Esta é minha primeira página HTML.</p>
+              <p>A estrutura básica inclui:</p>
+              <ul>
+                <li><strong>DOCTYPE</strong>: Define a versão do HTML</li>
+                <li><strong>html</strong>: Elemento raiz</li>
+                <li><strong>head</strong>: Metadados e recursos</li>
+                <li><strong>body</strong>: Conteúdo visível</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exemplo-descricao">
+            <h4>
+              <i class="fas fa-info-circle"></i> Elementos Essenciais da
+              Estrutura
+            </h4>
+
+            <div class="pontos-chave">
+              <div class="ponto-chave">
+                <strong>&lt;!DOCTYPE html&gt;</strong>
+                <p>
+                  Declara que este é um documento HTML5. Sempre deve ser a
+                  primeira linha.
+                </p>
+              </div>
+
+              <div class="ponto-chave">
+                <strong>&lt;html lang="pt-br"&gt;</strong>
+                <p>
+                  Elemento raiz. O atributo "lang" define o idioma para
+                  acessibilidade e SEO.
+                </p>
+              </div>
+
+              <div class="ponto-chave">
+                <strong>&lt;meta charset="UTF-8"&gt;</strong>
+                <p>
+                  Define a codificação de caracteres. Evita problemas com
+                  acentos e caracteres especiais.
+                </p>
+              </div>
+
+              <div class="ponto-chave">
+                <strong>&lt;meta name="viewport"&gt;</strong>
+                <p>
+                  Configura a página para dispositivos móveis. Essencial para
+                  design responsivo.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="demonstracao-interativa">
+            <h4>🧪 Editor de Estrutura Interativo</h4>
+            <p>
+              Modifique a estrutura básica e veja como cada elemento afeta a
+              página:
+            </p>
+
+            <div class="controles-demo">
+              <button
+                class="btn-demo"
+                onclick="adicionarElemento('h2', 'Novo Subtítulo')"
+              >
+                Adicionar H2
+              </button>
+              <button
+                class="btn-demo"
+                onclick="adicionarElemento('p', 'Novo parágrafo de texto')"
+              >
+                Adicionar P
+              </button>
+              <button
+                class="btn-demo"
+                onclick="adicionarElemento('ul', '<li>Item 1</li><li>Item 2</li>')"
+              >
+                Adicionar Lista
+              </button>
+              <button class="btn-demo" onclick="limparEstrutura()">
+                Limpar Tudo
+              </button>
+              <button class="btn-demo" onclick="restaurarEstrutura()">
+                Restaurar Original
+              </button>
+            </div>
+
+            <div class="area-demo" id="estrutura-demo">
+              <h1>Olá, Mundo!</h1>
+              <p>Esta é minha primeira página HTML.</p>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 0.9rem; color: #888">
+              <strong>Código gerado:</strong>
+              <pre
+                style="
+                  background: #1e1e2e;
+                  padding: 10px;
+                  border-radius: 6px;
+                  margin-top: 10px;
+                  font-size: 0.8rem;
+                  overflow-x: auto;
+                "
+                id="codigo-gerado"
+              >
+&lt;h1&gt;Olá, Mundo!&lt;/h1&gt;
+&lt;p&gt;Esta é minha primeira página HTML.&lt;/p&gt;</pre
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Exemplo: Tags Semânticas -->
+        <section id="semantica" class="exemplo-section">
+          <h2 class="exemplo-titulo">
+            <i class="fas fa-code"></i> Tags Semânticas HTML5
+          </h2>
+
+          <div class="exemplo-grid">
+            <div class="exemplo-codigo">
+              <div class="exemplo-codigo-header">
+                <span>semantica.html</span>
+                <button
+                  class="btn-copiar"
+                  onclick="copiarCodigo('codigo-semantica')"
+                >
+                  <i class="fas fa-copy"></i> Copiar
+                </button>
+              </div>
+              <pre><code id="codigo-semantica">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+    &lt;title&gt;Blog Tech - Tags Semânticas&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Blog de Tecnologia&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#inicio"&gt;Início&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#artigos"&gt;Artigos&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#sobre"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h2&gt;O Futuro do HTML5&lt;/h2&gt;
+                &lt;p&gt;Publicado em &lt;time datetime="2023-10-15"&gt;15 de Outubro, 2023&lt;/time&gt;&lt;/p&gt;
+            &lt;/header&gt;
+            
+            &lt;section&gt;
+                &lt;h3&gt;Tags Semânticas&lt;/h3&gt;
+                &lt;p&gt;As tags semânticas melhoram a acessibilidade e SEO...&lt;/p&gt;
+            &lt;/section&gt;
+            
+            &lt;aside&gt;
+                &lt;h4&gt;Leia também&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;CSS Moderno&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;JavaScript ES6+&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/aside&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2023 Blog Tech. Todos os direitos reservados.&lt;/p&gt;
+        &lt;address&gt;
+            Contato: &lt;a href="mailto:contato@blogtech.com"&gt;contato@blogtech.com&lt;/a&gt;
+        &lt;/address&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="exemplo-visualizacao">
+              <header
+                style="
+                  background: #f0f0f0;
+                  padding: 20px;
+                  margin-bottom: 20px;
+                  border-radius: 8px;
+                "
+              >
+                <h1 style="margin-top: 0">Blog de Tecnologia</h1>
+                <nav>
+                  <ul
+                    style="
+                      display: flex;
+                      gap: 20px;
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                    "
+                  >
+                    <li>
+                      <a href="#" style="color: #e34c26; text-decoration: none"
+                        >Início</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" style="color: #e34c26; text-decoration: none"
+                        >Artigos</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" style="color: #e34c26; text-decoration: none"
+                        >Sobre</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </header>
+
+              <main
+                style="padding: 20px; background: white; border-radius: 8px"
+              >
+                <article>
+                  <header
+                    style="
+                      border-bottom: 2px solid #eee;
+                      padding-bottom: 15px;
+                      margin-bottom: 20px;
+                    "
+                  >
+                    <h2 style="margin-top: 0">O Futuro do HTML5</h2>
+                    <p style="color: #666; font-size: 0.9rem">
+                      Publicado em 15 de Outubro, 2023
+                    </p>
+                  </header>
+
+                  <section style="margin-bottom: 30px">
+                    <h3 style="color: #333">Tags Semânticas</h3>
+                    <p>
+                      As tags semânticas melhoram a acessibilidade e SEO,
+                      permitindo que navegadores e leitores de tela entendam
+                      melhor a estrutura da página.
+                    </p>
+                  </section>
+
+                  <aside
+                    style="
+                      background: #f9f9f9;
+                      padding: 15px;
+                      border-radius: 6px;
+                      border-left: 4px solid #e34c26;
+                    "
+                  >
+                    <h4 style="margin-top: 0; color: #333">Leia também</h4>
+                    <ul>
+                      <li>
+                        <a href="#" style="color: #e34c26">CSS Moderno</a>
+                      </li>
+                      <li>
+                        <a href="#" style="color: #e34c26">JavaScript ES6+</a>
+                      </li>
+                    </ul>
+                  </aside>
+                </article>
+              </main>
+
+              <footer
+                style="
+                  background: #333;
+                  color: white;
+                  padding: 20px;
+                  margin-top: 20px;
+                  border-radius: 8px;
+                "
+              >
+                <p style="margin: 0 0 10px 0">
+                  © 2023 Blog Tech. Todos os direitos reservados.
+                </p>
+                <address style="font-style: normal">
+                  Contato:
+                  <a href="mailto:contato@blogtech.com" style="color: #00ff88"
+                    >contato@blogtech.com</a
+                  >
+                </address>
+              </footer>
+            </div>
+          </div>
+
+          <div class="comparacao-container">
+            <h3>🏗️ Comparação: Div vs Tags Semânticas</h3>
+            <p>
+              Entenda por que tags semânticas são melhores que divs genéricas:
+            </p>
+
+            <div class="comparacao-grid">
+              <div class="comparacao-item">
+                <h4><i class="fas fa-times-circle"></i> Com DIVs (Ruim)</h4>
+                <ul>
+                  <li>Estrutura pouco clara</li>
+                  <li>Problemas de acessibilidade</li>
+                  <li>SEO prejudicado</li>
+                  <li>Manutenção difícil</li>
+                  <li>Leitores de tela confusos</li>
+                </ul>
+              </div>
+
+              <div class="comparacao-item">
+                <h4>
+                  <i class="fas fa-check-circle"></i> Com Tags Semânticas (Bom)
+                </h4>
+                <ul>
+                  <li>Estrutura clara e organizada</li>
+                  <li>Excelente acessibilidade</li>
+                  <li>SEO otimizado</li>
+                  <li>Fácil manutenção</li>
+                  <li>Melhor experiência para leitores de tela</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="dica">
+              <h5><i class="fas fa-lightbulb"></i> Analogia Prática</h5>
+              <p>
+                Imagine uma biblioteca: Usar apenas DIVs é como ter todos os
+                livros em caixas sem rótulo. Tags semânticas são como organizar
+                em seções claras: "Romance", "Técnico", "Infantil". Ambos
+                guardam os livros, mas um é muito mais útil!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Exemplo: Texto e Formatação -->
+        <section id="texto" class="exemplo-section">
+          <h2 class="exemplo-titulo">
+            <i class="fas fa-font"></i> Texto e Formatação
+          </h2>
+
+          <div class="exemplo-grid">
+            <div class="exemplo-codigo">
+              <div class="exemplo-codigo-header">
+                <span>texto.html</span>
+                <button
+                  class="btn-copiar"
+                  onclick="copiarCodigo('codigo-texto')"
+                >
+                  <i class="fas fa-copy"></i> Copiar
+                </button>
+              </div>
+              <pre><code id="codigo-texto">&lt;!-- Cabeçalhos --&gt;
+&lt;h1&gt;Título Principal (H1)&lt;/h1&gt;
+&lt;h2&gt;Subtítulo (H2)&lt;/h2&gt;
+&lt;h3&gt;Seção (H3)&lt;/h3&gt;
+
+&lt;!-- Parágrafos e quebras --&gt;
+&lt;p&gt;Este é um parágrafo normal.&lt;br&gt;
+Quebramos a linha aqui.&lt;/p&gt;
+
+&lt;!-- Formatação de texto --&gt;
+&lt;p&gt;
+    &lt;strong&gt;Texto forte (negrito)&lt;/strong&gt;&lt;br&gt;
+    &lt;em&gt;Texto enfatizado (itálico)&lt;/em&gt;&lt;br&gt;
+    &lt;mark&gt;Texto marcado (destaque)&lt;/mark&gt;&lt;br&gt;
+    &lt;small&gt;Texto pequeno&lt;/small&gt;&lt;br&gt;
+    &lt;del&gt;Texto deletado (riscado)&lt;/del&gt;&lt;br&gt;
+    &lt;ins&gt;Texto inserido (sublinhado)&lt;/ins&gt;&lt;br&gt;
+    H&lt;sub&gt;2&lt;/sub&gt;O (subscrito)&lt;br&gt;
+    x&lt;sup&gt;2&lt;/sup&gt; (sobrescrito)
+&lt;/p&gt;
+
+&lt;!-- Citações --&gt;
+&lt;blockquote cite="https://exemplo.com"&gt;
+    Esta é uma citação longa que pode ocupar múltiplas linhas.
+&lt;/blockquote&gt;
+&lt;p&gt;Segundo &lt;cite&gt;Albert Einstein&lt;/cite&gt;: 
+&lt;q&gt;A imaginação é mais importante que o conhecimento.&lt;/q&gt;&lt;/p&gt;
+
+&lt;!-- Listas --&gt;
+&lt;h4&gt;Lista Ordenada (OL)&lt;/h4&gt;
+&lt;ol&gt;
+    &lt;li&gt;Primeiro item&lt;/li&gt;
+    &lt;li&gt;Segundo item&lt;/li&gt;
+    &lt;li&gt;Terceiro item&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4&gt;Lista Não Ordenada (UL)&lt;/h4&gt;
+&lt;ul&gt;
+    &lt;li&gt;Item da lista&lt;/li&gt;
+    &lt;li&gt;Outro item&lt;/li&gt;
+    &lt;li&gt;Mais um item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Lista de Definição (DL)&lt;/h4&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Linguagem de marcação para páginas web&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Linguagem de estilização&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+            </div>
+
+            <div class="exemplo-visualizacao">
+              <h1>Título Principal (H1)</h1>
+              <h2>Subtítulo (H2)</h2>
+              <h3>Seção (H3)</h3>
+
+              <p>
+                Este é um parágrafo normal.<br />
+                Quebramos a linha aqui.
+              </p>
+
+              <p>
+                <strong>Texto forte (negrito)</strong><br />
+                <em>Texto enfatizado (itálico)</em><br />
+                <mark>Texto marcado (destaque)</mark><br />
+                <small>Texto pequeno</small><br />
+                <del>Texto deletado (riscado)</del><br />
+                <ins>Texto inserido (sublinhado)</ins><br />
+                H<sub>2</sub>O (subscrito)<br />
+                x<sup>2</sup> (sobrescrito)
+              </p>
+
+              <blockquote
+                style="
+                  border-left: 4px solid #e34c26;
+                  padding-left: 15px;
+                  margin: 20px 0;
+                  font-style: italic;
+                "
+              >
+                Esta é uma citação longa que pode ocupar múltiplas linhas.
+              </blockquote>
+
+              <p>
+                Segundo <cite>Albert Einstein</cite>:
+                <q>A imaginação é mais importante que o conhecimento.</q>
+              </p>
+
+              <h4>Lista Ordenada (OL)</h4>
+              <ol>
+                <li>Primeiro item</li>
+                <li>Segundo item</li>
+                <li>Terceiro item</li>
+              </ol>
+
+              <h4>Lista Não Ordenada (UL)</h4>
+              <ul>
+                <li>Item da lista</li>
+                <li>Outro item</li>
+                <li>Mais um item</li>
+              </ul>
+
+              <h4>Lista de Definição (DL)</h4>
+              <dl>
+                <dt><strong>HTML</strong></dt>
+                <dd>Linguagem de marcação para páginas web</dd>
+                <dt><strong>CSS</strong></dt>
+                <dd>Linguagem de estilização</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="demonstracao-interativa">
+            <h4>🎨 Gerador de Texto HTML</h4>
+            <p>Experimente criar diferentes formatações de texto:</p>
+
+            <div class="controles-demo">
+              <button
+                class="btn-demo"
+                onclick="formatarTexto('h1', 'Título H1')"
+              >
+                H1
+              </button>
+              <button
+                class="btn-demo"
+                onclick="formatarTexto('h2', 'Subtítulo H2')"
+              >
+                H2
+              </button>
+              <button
+                class="btn-demo"
+                onclick="formatarTexto('p', 'Parágrafo normal')"
+              >
+                Parágrafo
+              </button>
+              <button
+                class="btn-demo"
+                onclick="formatarTexto('strong', 'Texto em negrito')"
+              >
+                Negrito
+              </button>
+              <button
+                class="btn-demo"
+                onclick="formatarTexto('em', 'Texto em itálico')"
+              >
+                Itálico
+              </button>
+              <button
+                class="btn-demo"
+                onclick="formatarTexto('mark', 'Texto marcado')"
+              >
+                Marcado
+              </button>
+              <button class="btn-demo" onclick="adicionarLista('ol', 3)">
+                Lista Ordenada
+              </button>
+              <button class="btn-demo" onclick="adicionarLista('ul', 3)">
+                Lista Não Ordenada
+              </button>
+            </div>
+
+            <div class="area-demo" id="texto-demo">
+              <p>Adicione elementos de texto usando os botões acima.</p>
+            </div>
+
+            <div style="margin-top: 20px">
+              <strong>HTML Gerado:</strong>
+              <pre
+                style="
+                  background: #1e1e2e;
+                  padding: 10px;
+                  border-radius: 6px;
+                  margin-top: 10px;
+                  font-size: 0.8rem;
+                  overflow-x: auto;
+                  min-height: 100px;
+                "
+                id="html-texto-gerado"
+              >
+&lt;p&gt;Adicione elementos de texto usando os botões acima.&lt;/p&gt;</pre
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Exemplo: Formulários -->
+        <section id="formularios" class="exemplo-section">
+          <h2 class="exemplo-titulo">
+            <i class="fas fa-edit"></i> Formulários HTML5
+          </h2>
+
+          <div class="exemplo-grid">
+            <div class="exemplo-codigo">
+              <div class="exemplo-codigo-header">
+                <span>formulario.html</span>
+                <button
+                  class="btn-copiar"
+                  onclick="copiarCodigo('codigo-formulario')"
+                >
+                  <i class="fas fa-copy"></i> Copiar
+                </button>
+              </div>
+              <pre><code id="codigo-formulario">&lt;form id="meuFormulario" novalidate&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Informações Pessoais&lt;/legend&gt;
+        
+        &lt;div&gt;
+            &lt;label for="nome"&gt;Nome Completo:&lt;/label&gt;
+            &lt;input type="text" id="nome" name="nome" 
+                   placeholder="Digite seu nome" 
+                   required minlength="3"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="email"&gt;Email:&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" 
+                   placeholder="seu@email.com" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="telefone"&gt;Telefone:&lt;/label&gt;
+            &lt;input type="tel" id="telefone" name="telefone" 
+                   pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}" 
+                   placeholder="11-99999-9999"&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;Preferências&lt;/legend&gt;
+        
+        &lt;div&gt;
+            &lt;label for="nascimento"&gt;Data de Nascimento:&lt;/label&gt;
+            &lt;input type="date" id="nascimento" name="nascimento"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="cor"&gt;Cor Favorita:&lt;/label&gt;
+            &lt;input type="color" id="cor" name="cor" value="#e34c26"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="idade"&gt;Idade:&lt;/label&gt;
+            &lt;input type="range" id="idade" name="idade" 
+                   min="18" max="100" value="25"&gt;
+            &lt;output for="idade" id="idadeValor"&gt;25&lt;/output&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label&gt;Interesses:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="checkbox" id="html" name="interesses" value="html"&gt;
+            &lt;label for="html"&gt;HTML&lt;/label&gt;&lt;br&gt;
+            
+            &lt;input type="checkbox" id="css" name="interesses" value="css"&gt;
+            &lt;label for="css"&gt;CSS&lt;/label&gt;&lt;br&gt;
+            
+            &lt;input type="checkbox" id="js" name="interesses" value="js"&gt;
+            &lt;label for="js"&gt;JavaScript&lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="nivel"&gt;Nível de Experiência:&lt;/label&gt;
+            &lt;select id="nivel" name="nivel"&gt;
+                &lt;option value="" disabled selected&gt;Selecione...&lt;/option&gt;
+                &lt;option value="iniciante"&gt;Iniciante&lt;/option&gt;
+                &lt;option value="intermediario"&gt;Intermediário&lt;/option&gt;
+                &lt;option value="avancado"&gt;Avançado&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="mensagem"&gt;Mensagem:&lt;/label&gt;
+            &lt;textarea id="mensagem" name="mensagem" 
+                      rows="4" placeholder="Digite sua mensagem..."&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;button type="submit"&gt;Enviar Formulário&lt;/button&gt;
+    &lt;button type="reset"&gt;Limpar Formulário&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+    // Validação e interatividade
+    const idadeSlider = document.getElementById('idade');
+    const idadeOutput = document.getElementById('idadeValor');
+    
+    idadeSlider.addEventListener('input', function() {
+        idadeOutput.value = this.value;
+    });
+    
+    document.getElementById('meuFormulario').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Formulário enviado com sucesso!');
+    });
+&lt;/script&gt;</code></pre>
+            </div>
+
+            <div class="exemplo-visualizacao">
+              <form
+                id="formulario-demo"
+                style="max-width: 600px; margin: 0 auto"
+              >
+                <fieldset
+                  style="
+                    border: 2px solid #e34c26;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    border-radius: 8px;
+                  "
+                >
+                  <legend
+                    style="padding: 0 10px; color: #e34c26; font-weight: bold"
+                  >
+                    Informações Pessoais
+                  </legend>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-nome"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Nome Completo:</label
+                    >
+                    <input
+                      type="text"
+                      id="demo-nome"
+                      name="nome"
+                      placeholder="Digite seu nome"
+                      required
+                      minlength="3"
+                      style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    />
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-email"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Email:</label
+                    >
+                    <input
+                      type="email"
+                      id="demo-email"
+                      name="email"
+                      placeholder="seu@email.com"
+                      required
+                      style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    />
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-telefone"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Telefone:</label
+                    >
+                    <input
+                      type="tel"
+                      id="demo-telefone"
+                      name="telefone"
+                      pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}"
+                      placeholder="11-99999-9999"
+                      style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    />
+                  </div>
+                </fieldset>
+
+                <fieldset
+                  style="
+                    border: 2px solid #e34c26;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    border-radius: 8px;
+                  "
+                >
+                  <legend
+                    style="padding: 0 10px; color: #e34c26; font-weight: bold"
+                  >
+                    Preferências
+                  </legend>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-nascimento"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Data de Nascimento:</label
+                    >
+                    <input
+                      type="date"
+                      id="demo-nascimento"
+                      name="nascimento"
+                      style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    />
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-cor"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Cor Favorita:</label
+                    >
+                    <input
+                      type="color"
+                      id="demo-cor"
+                      name="cor"
+                      value="#e34c26"
+                      style="
+                        width: 100%;
+                        height: 40px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    />
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-idade"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Idade: <span id="demo-idade-valor">25</span></label
+                    >
+                    <input
+                      type="range"
+                      id="demo-idade"
+                      name="idade"
+                      min="18"
+                      max="100"
+                      value="25"
+                      style="width: 100%"
+                    />
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Interesses:</label
+                    >
+                    <input
+                      type="checkbox"
+                      id="demo-html"
+                      name="interesses"
+                      value="html"
+                    />
+                    <label for="demo-html">HTML</label><br />
+
+                    <input
+                      type="checkbox"
+                      id="demo-css"
+                      name="interesses"
+                      value="css"
+                    />
+                    <label for="demo-css">CSS</label><br />
+
+                    <input
+                      type="checkbox"
+                      id="demo-js"
+                      name="interesses"
+                      value="js"
+                    />
+                    <label for="demo-js">JavaScript</label>
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-nivel"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Nível de Experiência:</label
+                    >
+                    <select
+                      id="demo-nivel"
+                      name="nivel"
+                      style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    >
+                      <option value="" disabled selected>Selecione...</option>
+                      <option value="iniciante">Iniciante</option>
+                      <option value="intermediario">Intermediário</option>
+                      <option value="avancado">Avançado</option>
+                    </select>
+                  </div>
+
+                  <div style="margin-bottom: 15px">
+                    <label
+                      for="demo-mensagem"
+                      style="
+                        display: block;
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                      "
+                      >Mensagem:</label
+                    >
+                    <textarea
+                      id="demo-mensagem"
+                      name="mensagem"
+                      rows="4"
+                      placeholder="Digite sua mensagem..."
+                      style="
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                      "
+                    ></textarea>
+                  </div>
+                </fieldset>
+
+                <button
+                  type="submit"
+                  style="
+                    background: #e34c26;
+                    color: white;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    margin-right: 10px;
+                  "
+                >
+                  Enviar Formulário
+                </button>
+                <button
+                  type="reset"
+                  style="
+                    background: #666;
+                    color: white;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-weight: bold;
+                  "
+                >
+                  Limpar Formulário
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="exercicios-praticos">
+            <h3>💪 Exercícios Práticos</h3>
+
+            <div class="exercicio">
+              <h4>
+                <i class="fas fa-tasks"></i> Exercício 1: Formulário de Contato
+              </h4>
+              <p>Crie um formulário de contato com os seguintes campos:</p>
+              <ul>
+                <li>Nome (texto, obrigatório)</li>
+                <li>Email (email, obrigatório)</li>
+                <li>Assunto (select com opções)</li>
+                <li>Mensagem (textarea, obrigatório)</li>
+                <li>Botão de envio</li>
+              </ul>
+              <button class="btn-editor" onclick="abrirExercicioFormulario()">
+                <i class="fas fa-play"></i> Iniciar Exercício
+              </button>
+            </div>
+
+            <div class="exercicio">
+              <h4>
+                <i class="fas fa-tasks"></i> Exercício 2: Formulário de Cadastro
+              </h4>
+              <p>Crie um formulário de cadastro com validação HTML5:</p>
+              <ul>
+                <li>Senha (password, mínimo 8 caracteres)</li>
+                <li>Confirmação de senha (deve ser igual à senha)</li>
+                <li>Termos de uso (checkbox obrigatório)</li>
+                <li>Data de nascimento (date, maior de 18 anos)</li>
+              </ul>
+              <button class="btn-editor" onclick="abrirExercicioCadastro()">
+                <i class="fas fa-play"></i> Iniciar Exercício
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projeto Completo -->
+        <section class="projeto-completo">
+          <h2>
+            <i class="fas fa-project-diagram"></i> Projeto: Página de Perfil
+            Pessoal
+          </h2>
+          <p>
+            Crie uma página de perfil completa usando todos os conceitos
+            aprendidos. Edite o código ao lado e veja o resultado em tempo real.
+          </p>
+
+          <div class="projeto-codigo">
+            <div>
+              <h4>Editor HTML:</h4>
+              <div
+                class="editor-interativo"
+                id="editor-perfil"
+                contenteditable="true"
+              >
+                &lt;!DOCTYPE html&gt; &lt;html lang="pt-br"&gt; &lt;head&gt;
+                &lt;meta charset="UTF-8"&gt; &lt;meta name="viewport"
+                content="width=device-width, initial-scale=1.0"&gt;
+                &lt;title&gt;Meu Perfil&lt;/title&gt; &lt;style&gt; * { margin:
+                0; padding: 0; box-sizing: border-box; } body { font-family:
+                Arial, sans-serif; line-height: 1.6; background: #f4f4f4; color:
+                #333; } .container { max-width: 800px; margin: 0 auto; padding:
+                20px; } header { background: #e34c26; color: white; padding:
+                40px 0; text-align: center; border-radius: 10px; margin-bottom:
+                30px; } h1 { margin-bottom: 10px; } .tagline { font-size:
+                1.2rem; opacity: 0.9; } section { background: white; padding:
+                25px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px
+                5px rgba(0,0,0,0.1); } h2 { color: #e34c26; border-bottom: 2px
+                solid #eee; padding-bottom: 10px; margin-bottom: 20px; } .skills
+                ul { list-style: none; display: flex; flex-wrap: wrap; gap:
+                10px; } .skills li { background: #e34c26; color: white; padding:
+                8px 15px; border-radius: 20px; font-size: 0.9rem; } footer {
+                text-align: center; padding: 20px; color: #666; font-size:
+                0.9rem; } &lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;div
+                class="container"&gt; &lt;header&gt; &lt;h1&gt;Seu Nome
+                Aqui&lt;/h1&gt; &lt;p class="tagline"&gt;Desenvolvedor
+                Front-End&lt;/p&gt; &lt;/header&gt; &lt;section
+                class="sobre"&gt; &lt;h2&gt;Sobre Mim&lt;/h2&gt;
+                &lt;p&gt;Escreva uma breve descrição sobre você, sua experiência
+                e interesses.&lt;/p&gt; &lt;p&gt;Adicione mais detalhes sobre
+                sua jornada no desenvolvimento web.&lt;/p&gt; &lt;/section&gt;
+                &lt;section class="skills"&gt; &lt;h2&gt;Habilidades&lt;/h2&gt;
+                &lt;ul&gt; &lt;li&gt;HTML5&lt;/li&gt; &lt;li&gt;CSS3&lt;/li&gt;
+                &lt;li&gt;JavaScript&lt;/li&gt; &lt;li&gt;Responsive
+                Design&lt;/li&gt; &lt;/ul&gt; &lt;/section&gt; &lt;section
+                class="contato"&gt; &lt;h2&gt;Contato&lt;/h2&gt; &lt;p&gt;Email:
+                seu@email.com&lt;/p&gt; &lt;p&gt;GitHub: @seuusuario&lt;/p&gt;
+                &lt;/section&gt; &lt;footer&gt; &lt;p&gt;&amp;copy; 2023 Meu
+                Perfil. Todos os direitos reservados.&lt;/p&gt; &lt;/footer&gt;
+                &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;
+              </div>
+
+              <div class="controles-editor">
+                <button class="btn-editor" onclick="executarProjetoPerfil()">
+                  <i class="fas fa-play"></i> Executar Projeto
+                </button>
+                <button class="btn-editor" onclick="salvarProjetoPerfil()">
+                  <i class="fas fa-save"></i> Salvar Projeto
+                </button>
+                <button class="btn-editor" onclick="resetarProjetoPerfil()">
+                  <i class="fas fa-redo"></i> Resetar
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h4>Preview:</h4>
+              <div class="preview-container" id="preview-perfil">
+                O preview aparecerá aqui após executar.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recursos Rápidos -->
+        <section class="recursos-rapidos">
+          <div class="recurso-rapido">
+            <h4><i class="fas fa-clipboard-list"></i> Cheat Sheet HTML</h4>
+            <p>Lista rápida de todas as tags HTML com exemplos práticos.</p>
+          </div>
+
+          <div class="recurso-rapido">
+            <h4><i class="fas fa-search"></i> Validador HTML</h4>
+            <p>Verifique se seu código HTML está correto e sem erros.</p>
+          </div>
+
+          <div class="recurso-rapido">
+            <h4><i class="fas fa-rocket"></i> Templates Prontos</h4>
+            <p>Modelos de páginas HTML para começar rapidamente.</p>
+          </div>
+
+          <div class="recurso-rapido">
+            <h4><i class="fas fa-question-circle"></i> FAQ HTML</h4>
+            <p>Respostas para perguntas frequentes sobre HTML.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-code"></i>
+            <span>FrontEnd<span class="logo-accent">Master</span>Path</span>
+          </div>
+          <p class="footer-desc">
+            Aprenda HTML com exemplos práticos e interativos.
+          </p>
+          <div class="footer-copyright">
+            <p>&copy; 2023 FrontEnd Master Path. Continue praticando!</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Script específico para a página de exemplos HTML
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sistema de navegação
+        const navLinks = document.querySelectorAll(".nav-link");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinksContainer = document.querySelector(".nav-links");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            if (this.hash !== "") {
+              e.preventDefault();
+              const targetId = this.hash;
+              const targetElement = document.querySelector(targetId);
+
+              if (targetElement) {
+                navLinks.forEach((l) => l.classList.remove("active"));
+                this.classList.add("active");
+
+                window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: "smooth",
+                });
+
+                if (window.innerWidth < 768 && navLinksContainer) {
+                  navLinksContainer.style.display = "none";
+                }
+              }
+            }
+          });
+        });
+
+        if (menuToggle && navLinksContainer) {
+          menuToggle.addEventListener("click", function () {
+            if (navLinksContainer.style.display === "flex") {
+              navLinksContainer.style.display = "none";
+            } else {
+              navLinksContainer.style.display = "flex";
+              navLinksContainer.style.flexDirection = "column";
+              navLinksContainer.style.position = "absolute";
+              navLinksContainer.style.top = "100%";
+              navLinksContainer.style.left = "0";
+              navLinksContainer.style.width = "100%";
+              navLinksContainer.style.backgroundColor = "var(--bg-primary)";
+              navLinksContainer.style.padding = "20px";
+              navLinksContainer.style.borderTop =
+                "1px solid var(--border-color)";
+              navLinksContainer.style.gap = "15px";
+            }
+          });
+        }
+
+        // Função para rolar para seções
+        window.scrollToSection = function (sectionId) {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            window.scrollTo({
+              top: section.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        };
+
+        // Função para copiar código
+        window.copiarCodigo = function (id) {
+          const codigo = document.getElementById(id);
+          if (!codigo) return;
+
+          const texto = codigo.textContent;
+          navigator.clipboard
+            .writeText(texto)
+            .then(() => {
+              // Feedback visual
+              const btn = event.target.closest(".btn-copiar");
+              if (btn) {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                btn.style.background = "rgba(0, 255, 136, 0.2)";
+                btn.style.borderColor = "var(--accent-success)";
+                btn.style.color = "var(--accent-success)";
+
+                setTimeout(() => {
+                  btn.innerHTML = originalHTML;
+                  btn.style.background = "";
+                  btn.style.borderColor = "";
+                  btn.style.color = "";
+                }, 2000);
+              }
+
+              // Mostrar notificação
+              mostrarNotificacao(
+                "Código copiado!",
+                "O código foi copiado para a área de transferência.",
+                "success"
+              );
+            })
+            .catch((err) => {
+              console.error("Erro ao copiar:", err);
+              mostrarNotificacao(
+                "Erro ao copiar",
+                "Não foi possível copiar o código.",
+                "error"
+              );
+            });
+        };
+
+        // Função de notificação
+        function mostrarNotificacao(titulo, mensagem, tipo) {
+          const notificacao = document.createElement("div");
+          notificacao.className = "notificacao-frontend";
+          notificacao.innerHTML = `
+                    <button class="notificacao-fechar" onclick="this.parentElement.remove()">&times;</button>
+                    <div class="notificacao-titulo">
+                        ${tipo === "success" ? "🎉" : "❌"}
+                        ${titulo}
+                    </div>
+                    <div class="notificacao-mensagem">${mensagem}</div>
+                `;
+
+          // Estilos
+          notificacao.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--bg-card);
+                    border-left: 4px solid ${
+                      tipo === "success"
+                        ? "var(--accent-success)"
+                        : "var(--accent-danger)"
+                    };
+                    border-radius: 8px;
+                    padding: 15px 20px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    max-width: 350px;
+                    animation: slideInRight 0.3s ease;
+                `;
+
+          document.body.appendChild(notificacao);
+
+          // Auto-remover após 5 segundos
+          setTimeout(() => {
+            if (notificacao.parentElement) {
+              notificacao.style.animation = "slideOutRight 0.3s ease forwards";
+              setTimeout(() => notificacao.remove(), 300);
+            }
+          }, 5000);
+        }
+
+        // Adicionar estilos para animações de notificação
+        const estiloNotificacao = document.createElement("style");
+        estiloNotificacao.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                
+                @keyframes slideOutRight {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                
+                .notificacao-fechar {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    background: none;
+                    border: none;
+                    color: var(--text-secondary);
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    line-height: 1;
+                }
+            `;
+        document.head.appendChild(estiloNotificacao);
+
+        // Demo estrutura interativa
+        const estruturaOriginal = `<h1>Olá, Mundo!</h1>
+<p>Esta é minha primeira página HTML.</p>`;
+
+        let estruturaAtual = estruturaOriginal;
+
+        window.adicionarElemento = function (tag, conteudo) {
+          const demo = document.getElementById("estrutura-demo");
+          const codigo = document.getElementById("codigo-gerado");
+
+          if (!demo || !codigo) return;
+
+          // Criar elemento
+          const elemento = document.createElement(tag);
+
+          if (tag === "ul") {
+            elemento.innerHTML = conteudo;
+            elemento.style.marginLeft = "20px";
+          } else {
+            elemento.textContent = conteudo;
+          }
+
+          // Adicionar ao demo
+          demo.appendChild(elemento);
+
+          // Atualizar código
+          estruturaAtual += `\n<${tag}>${conteudo}</${tag}>`;
+          codigo.textContent = estruturaAtual;
+
+          // Destacar novo elemento
+          elemento.classList.add("highlight");
+          setTimeout(() => elemento.classList.remove("highlight"), 2000);
+        };
+
+        window.limparEstrutura = function () {
+          const demo = document.getElementById("estrutura-demo");
+          const codigo = document.getElementById("codigo-gerado");
+
+          if (!demo || !codigo) return;
+
+          demo.innerHTML = "";
+          estruturaAtual = "";
+          codigo.textContent = "";
+        };
+
+        window.restaurarEstrutura = function () {
+          const demo = document.getElementById("estrutura-demo");
+          const codigo = document.getElementById("codigo-gerado");
+
+          if (!demo || !codigo) return;
+
+          demo.innerHTML = `<h1>Olá, Mundo!</h1>
+<p>Esta é minha primeira página HTML.</p>`;
+
+          estruturaAtual = estruturaOriginal;
+          codigo.textContent = estruturaAtual;
+        };
+
+        // Demo texto interativo
+        window.formatarTexto = function (tag, texto) {
+          const demo = document.getElementById("texto-demo");
+          const codigo = document.getElementById("html-texto-gerado");
+
+          if (!demo || !codigo) return;
+
+          const elemento = document.createElement(tag);
+          elemento.textContent = texto;
+
+          // Estilos específicos
+          if (tag === "h1") {
+            elemento.style.fontSize = "2rem";
+            elemento.style.margin = "20px 0 10px 0";
+            elemento.style.color = "#333";
+          } else if (tag === "h2") {
+            elemento.style.fontSize = "1.5rem";
+            elemento.style.margin = "15px 0 8px 0";
+            elemento.style.color = "#555";
+          } else if (tag === "strong") {
+            elemento.style.fontWeight = "bold";
+          } else if (tag === "em") {
+            elemento.style.fontStyle = "italic";
+          } else if (tag === "mark") {
+            elemento.style.backgroundColor = "yellow";
+            elemento.style.padding = "2px 4px";
+          }
+
+          demo.appendChild(elemento);
+
+          // Atualizar código
+          const htmlAtual = codigo.textContent;
+          const novoHTML = htmlAtual + `\n<${tag}>${texto}</${tag}>`;
+          codigo.textContent = novoHTML;
+        };
+
+        window.adicionarLista = function (tipo, itens) {
+          const demo = document.getElementById("texto-demo");
+          const codigo = document.getElementById("html-texto-gerado");
+
+          if (!demo || !codigo) return;
+
+          const lista = document.createElement(tipo);
+          lista.style.marginLeft = "20px";
+          lista.style.marginTop = "10px";
+
+          let htmlLista = "";
+
+          for (let i = 1; i <= itens; i++) {
+            const item = document.createElement("li");
+            item.textContent = `Item ${i} da lista`;
+            lista.appendChild(item);
+            htmlLista += `\n  <li>Item ${i} da lista</li>`;
+          }
+
+          demo.appendChild(lista);
+
+          // Atualizar código
+          const htmlAtual = codigo.textContent;
+          const novoHTML = htmlAtual + `\n<${tipo}>${htmlLista}\n</${tipo}>`;
+          codigo.textContent = novoHTML;
+        };
+
+        // Configurar formulário demo
+        const formularioDemo = document.getElementById("formulario-demo");
+        if (formularioDemo) {
+          // Configurar slider de idade
+          const idadeSlider = document.getElementById("demo-idade");
+          const idadeValor = document.getElementById("demo-idade-valor");
+
+          if (idadeSlider && idadeValor) {
+            idadeSlider.addEventListener("input", function () {
+              idadeValor.textContent = this.value;
+            });
+          }
+
+          // Configurar envio do formulário
+          formularioDemo.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Validação básica
+            const nome = document.getElementById("demo-nome");
+            const email = document.getElementById("demo-email");
+
+            let erros = [];
+
+            if (!nome.value.trim()) {
+              erros.push("Nome é obrigatório");
+              nome.style.borderColor = "#ff0055";
+            } else {
+              nome.style.borderColor = "#ddd";
+            }
+
+            if (!email.value.trim()) {
+              erros.push("Email é obrigatório");
+              email.style.borderColor = "#ff0055";
+            } else if (!email.value.includes("@")) {
+              erros.push("Email inválido");
+              email.style.borderColor = "#ff0055";
+            } else {
+              email.style.borderColor = "#ddd";
+            }
+
+            if (erros.length > 0) {
+              alert("Erros no formulário:\n\n" + erros.join("\n"));
+            } else {
+              alert(
+                "Formulário enviado com sucesso!\n\nOs dados seriam processados em um ambiente real."
+              );
+              formularioDemo.reset();
+              idadeValor.textContent = "25";
+            }
+          });
+
+          // Configurar reset do formulário
+          formularioDemo.addEventListener("reset", function () {
+            setTimeout(() => {
+              idadeValor.textContent = "25";
+            }, 10);
+          });
+        }
+
+        // Exercícios formulário
+        window.abrirExercicioFormulario = function () {
+          const codigo = `&lt;!-- Exercício: Formulário de Contato --&gt;
+&lt;form id="contatoForm"&gt;
+    &lt;h3&gt;Entre em Contato&lt;/h3&gt;
+    
+    &lt;div&gt;
+        &lt;label for="exercicio-nome"&gt;Nome:&lt;/label&gt;
+        &lt;input type="text" id="exercicio-nome" name="nome" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for="exercicio-email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="exercicio-email" name="email" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for="exercicio-assunto"&gt;Assunto:&lt;/label&gt;
+        &lt;select id="exercicio-assunto" name="assunto" required&gt;
+            &lt;option value=""&gt;Selecione...&lt;/option&gt;
+            &lt;option value="duvida"&gt;Dúvida&lt;/option&gt;
+            &lt;option value="sugestao"&gt;Sugestão&lt;/option&gt;
+            &lt;option value="problema"&gt;Problema&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for="exercicio-mensagem"&gt;Mensagem:&lt;/label&gt;
+        &lt;textarea id="exercicio-mensagem" name="mensagem" rows="4" required&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    
+    &lt;button type="submit"&gt;Enviar Mensagem&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+    document.getElementById('contatoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Mensagem enviada com sucesso!');
+    });
+&lt;/script&gt;`;
+
+          // Abrir no laboratório ou mostrar código
+          if (window.FrontEndMaster && window.FrontEndMaster.executarCodigo) {
+            localStorage.setItem(
+              "exercicioHTML",
+              JSON.stringify({
+                html: codigo,
+                css: "",
+                js: "",
+              })
+            );
+            window.location.href = "../index.html#laboratorio";
+          } else {
+            mostrarNotificacao(
+              "Exercício Disponível",
+              "Copie o código e cole no laboratório para começar!",
+              "success"
+            );
+            prompt("Exercício de Formulário de Contato", codigo);
+          }
+        };
+
+        window.abrirExercicioCadastro = function () {
+          const codigo = `&lt;!-- Exercício: Formulário de Cadastro --&gt;
+&lt;form id="cadastroForm"&gt;
+    &lt;h3&gt;Crie sua Conta&lt;/h3&gt;
+    
+    &lt;div&gt;
+        &lt;label for="cadastro-email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="cadastro-email" name="email" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for="cadastro-senha"&gt;Senha (mínimo 8 caracteres):&lt;/label&gt;
+        &lt;input type="password" id="cadastro-senha" name="senha" 
+               minlength="8" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for="cadastro-confirmar"&gt;Confirme sua Senha:&lt;/label&gt;
+        &lt;input type="password" id="cadastro-confirmar" name="confirmar" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;label for="cadastro-nascimento"&gt;Data de Nascimento:&lt;/label&gt;
+        &lt;input type="date" id="cadastro-nascimento" name="nascimento" required&gt;
+    &lt;/div&gt;
+    
+    &lt;div&gt;
+        &lt;input type="checkbox" id="cadastro-termos" name="termos" required&gt;
+        &lt;label for="cadastro-termos"&gt;Aceito os termos de uso&lt;/label&gt;
+    &lt;/div&gt;
+    
+    &lt;button type="submit"&gt;Criar Conta&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+    const form = document.getElementById('cadastroForm');
+    const senha = document.getElementById('cadastro-senha');
+    const confirmar = document.getElementById('cadastro-confirmar');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validar se senhas são iguais
+        if(senha.value !== confirmar.value) {
+            alert('As senhas não coincidem!');
+            return;
+        }
+        
+        // Validar idade (maior de 18 anos)
+        const nascimento = new Date(document.getElementById('cadastro-nascimento').value);
+        const hoje = new Date();
+        let idade = hoje.getFullYear() - nascimento.getFullYear();
+        const mes = hoje.getMonth() - nascimento.getMonth();
+        
+        if(mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+            idade--;
+        }
+        
+        if(idade < 18) {
+            alert('Você deve ter pelo menos 18 anos para se cadastrar.');
+            return;
+        }
+        
+        alert('Conta criada com sucesso!');
+    });
+&lt;/script&gt;`;
+
+          if (window.FrontEndMaster && window.FrontEndMaster.executarCodigo) {
+            localStorage.setItem(
+              "exercicioHTML",
+              JSON.stringify({
+                html: codigo,
+                css: "",
+                js: "",
+              })
+            );
+            window.location.href = "../index.html#laboratorio";
+          } else {
+            mostrarNotificacao(
+              "Exercício Disponível",
+              "Copie o código e cole no laboratório para começar!",
+              "success"
+            );
+            prompt("Exercício de Formulário de Cadastro", codigo);
+          }
+        };
+
+        // Projeto perfil
+        window.executarProjetoPerfil = function () {
+          const editor = document.getElementById("editor-perfil");
+          const preview = document.getElementById("preview-perfil");
+
+          if (!editor || !preview) return;
+
+          try {
+            const codigo = editor.textContent;
+            preview.innerHTML = codigo;
+
+            // Destacar preview
+            preview.style.border = "2px solid #e34c26";
+            setTimeout(() => (preview.style.border = "1px solid #ddd"), 1000);
+
+            mostrarNotificacao(
+              "Projeto Executado",
+              "Seu perfil foi atualizado no preview!",
+              "success"
+            );
+          } catch (error) {
+            mostrarNotificacao(
+              "Erro ao Executar",
+              "Verifique se o código HTML está correto.",
+              "error"
+            );
+            console.error(error);
+          }
+        };
+
+        window.salvarProjetoPerfil = function () {
+          const editor = document.getElementById("editor-perfil");
+          if (!editor) return;
+
+          const codigo = editor.textContent;
+          localStorage.setItem("projetoPerfilHTML", codigo);
+          mostrarNotificacao(
+            "Projeto Salvo",
+            "Seu projeto foi salvo localmente.",
+            "success"
+          );
+        };
+
+        window.resetarProjetoPerfil = function () {
+          const editor = document.getElementById("editor-perfil");
+          if (!editor) return;
+
+          editor.textContent = `<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: #e34c26;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #e34c26;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .skills ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skills li {
+            background: #e34c26;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Seu Nome Aqui</h1>
+            <p class="tagline">Desenvolvedor Front-End</p>
+        </header>
+        
+        <section class="sobre">
+            <h2>Sobre Mim</h2>
+            <p>Escreva uma breve descrição sobre você, sua experiência e interesses.</p>
+            <p>Adicione mais detalhes sobre sua jornada no desenvolvimento web.</p>
+        </section>
+        
+        <section class="skills">
+            <h2>Habilidades</h2>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>Responsive Design</li>
+            </ul>
+        </section>
+        
+        <section class="contato">
+            <h2>Contato</h2>
+            <p>Email: seu@email.com</p>
+            <p>GitHub: @seuusuario</p>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Meu Perfil. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>`;
+
+          mostrarNotificacao(
+            "Projeto Resetado",
+            "O projeto foi restaurado ao estado original.",
+            "info"
+          );
+        };
+
+        // Carregar projeto salvo se existir
+        const projetoSalvo = localStorage.getItem("projetoPerfilHTML");
+        if (projetoSalvo) {
+          const editor = document.getElementById("editor-perfil");
+          if (editor) {
+            editor.textContent = projetoSalvo;
+          }
+        }
+
+        // Configurar realce de sintaxe nos exemplos de código
+        function aplicarRealceSintaxe() {
+          const elementosCode = document.querySelectorAll("pre code");
+
+          elementosCode.forEach((code) => {
+            let html = code.innerHTML;
+
+            // Realce básico de tags HTML
+            html = html.replace(
+              /&lt;(\/?)(\w+)/g,
+              '&lt;<span class="tag-exemplo">$1$2</span>'
+            );
+            html = html.replace(
+              /(\w+)=/g,
+              '<span class="atributo-exemplo">$1</span>='
+            );
+            html = html.replace(
+              /"[^"]*"/g,
+              '<span class="valor-exemplo">$&</span>'
+            );
+            html = html.replace(
+              /&lt;!--[\s\S]*?--&gt;/g,
+              '<span class="comentario-exemplo">$&</span>'
+            );
+
+            code.innerHTML = html;
+          });
+        }
+
+        // Aplicar realce após carregar a página
+        setTimeout(aplicarRealceSintaxe, 100);
+
+        // Animação de entrada dos elementos
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate-in");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document
+          .querySelectorAll(
+            ".exemplo-section, .categoria-card, .projeto-completo"
+          )
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      });
+    </script>
+  </body>
+</html>

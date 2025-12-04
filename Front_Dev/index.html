@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrontEnd Master Path - Aprenda Front-End do Zero</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navegação -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-code"></i>
+          <span>FrontEnd<span class="logo-accent">Lab</span>
+        </div>
+        <div class="nav-links">
+          <a href="#home" class="nav-link active"
+            ><i class="fas fa-home"></i> Início</a
+          >
+          <a href="#cursos" class="nav-link"
+            ><i class="fas fa-graduation-cap"></i> Cursos</a
+          >
+          <a href="#laboratorio" class="nav-link"
+            ><i class="fas fa-flask"></i> Laboratório</a
+          >
+          <a href="#projetos" class="nav-link"
+            ><i class="fas fa-project-diagram"></i> Projetos</a
+          >
+          <a href="#missoes" class="nav-link"
+            ><i class="fas fa-trophy"></i> Missões</a
+          >
+        </div>
+        <button class="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Domine <span class="text-gradient">Front-End</span> do Zero ao
+            Avançado
+          </h1>
+          <p class="hero-subtitle">
+            Aprenda com método científico, prática constante e projetos reais em
+            um ambiente tech-dark futurista.
+          </p>
+          <div class="hero-buttons">
+            <a href="#cursos" class="btn-primary"
+              >Começar Agora <i class="fas fa-arrow-right"></i
+            ></a>
+            <a href="#laboratorio" class="btn-secondary"
+              >Experimentar Laboratório</a
+            >
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">120+</span>
+              <span class="stat-label">Conceitos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">Exercícios</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Projetos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Prático</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="code-filename">exemplo.html</span>
+            </div>
+            <div class="code-content">
+              <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Meu Primeiro Site&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Olá, Dev!&lt;/h1&gt;
+  &lt;p&gt;Você está no caminho certo.&lt;/p&gt;
+  &lt;button id="meuBotao"&gt;Clique aqui&lt;/button&gt;
+  
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Cursos -->
+    <section id="cursos" class="cursos">
+      <div class="container">
+        <h2 class="section-title">
+          Trilha de Aprendizado <span class="text-gradient">Front-End</span>
+        </h2>
+        <p class="section-subtitle">
+          Comece do básico e avance gradualmente até tópicos avançados.
+        </p>
+
+        <div class="trilha">
+          <!-- HTML Card -->
+          <div class="curso-card html-card">
+            <div class="curso-icon">
+              <i class="fab fa-html5"></i>
+            </div>
+            <h3 class="curso-title">HTML</h3>
+            <p class="curso-desc">
+              A estrutura de toda página web. Aprenda a criar conteúdo semântico
+              e acessível.
+            </p>
+            <div class="curso-niveis">
+              <span class="nivel nivel-iniciante">Iniciante</span>
+              <span class="nivel nivel-intermediario">Intermediário</span>
+              <span class="nivel nivel-avancado">Avançado</span>
+            </div>
+            <ul class="curso-topicos">
+              <li><i class="fas fa-check"></i> Estrutura básica</li>
+              <li><i class="fas fa-check"></i> Tags semânticas</li>
+              <li><i class="fas fa-check"></i> Formulários</li>
+              <li><i class="fas fa-check"></i> SEO e Acessibilidade</li>
+            </ul>
+            <a href="pages/html-course.html" class="btn-curso"
+              >Começar HTML <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <!-- CSS Card -->
+          <div class="curso-card css-card">
+            <div class="curso-icon">
+              <i class="fab fa-css3-alt"></i>
+            </div>
+            <h3 class="curso-title">CSS</h3>
+            <p class="curso-desc">
+              Estilização e layout. Crie designs responsivos, animações e
+              interfaces modernas.
+            </p>
+            <div class="curso-niveis">
+              <span class="nivel nivel-iniciante">Iniciante</span>
+              <span class="nivel nivel-intermediario">Intermediário</span>
+              <span class="nivel nivel-avancado">Avançado</span>
+            </div>
+            <ul class="curso-topicos">
+              <li><i class="fas fa-check"></i> Seletores e Box Model</li>
+              <li><i class="fas fa-check"></i> Flexbox e Grid</li>
+              <li><i class="fas fa-check"></i> Animações e Transições</li>
+              <li><i class="fas fa-check"></i> Design Responsivo</li>
+            </ul>
+            <a href="pages/css-course.html" class="btn-curso"
+              >Começar CSS <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <!-- JavaScript Card -->
+          <div class="curso-card js-card">
+            <div class="curso-icon">
+              <i class="fab fa-js-square"></i>
+            </div>
+            <h3 class="curso-title">JavaScript</h3>
+            <p class="curso-desc">
+              Interatividade e lógica. Domine desde variáveis até frameworks
+              modernos.
+            </p>
+            <div class="curso-niveis">
+              <span class="nivel nivel-iniciante">Iniciante</span>
+              <span class="nivel nivel-intermediario">Intermediário</span>
+              <span class="nivel nivel-avancado">Avançado</span>
+            </div>
+            <ul class="curso-topicos">
+              <li><i class="fas fa-check"></i> Fundamentos</li>
+              <li><i class="fas fa-check"></i> DOM e Eventos</li>
+              <li><i class="fas fa-check"></i> Async/Await</li>
+              <li><i class="fas fa-check"></i> React Básico</li>
+            </ul>
+            <a href="pages/js-course.html" class="btn-curso"
+              >Começar JS <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Método de Aprendizado -->
+    <section class="metodo">
+      <div class="container">
+        <h2 class="section-title">
+          Método Científico de <span class="text-gradient">Aprendizado</span>
+        </h2>
+        <p class="section-subtitle">
+          Técnicas baseadas em ciência cognitiva para acelerar seu aprendizado.
+        </p>
+
+        <div class="metodos-grid">
+          <div class="metodo-card">
+            <div class="metodo-icon">
+              <i class="fas fa-hands"></i>
+            </div>
+            <h3>Aprender Fazendo</h3>
+            <p>
+              Teoria + prática imediata. Cada conceito tem exercícios práticos
+              para fixação.
+            </p>
+          </div>
+
+          <div class="metodo-card">
+            <div class="metodo-icon">
+              <i class="fas fa-history"></i>
+            </div>
+            <h3>Repetição Espaçada</h3>
+            <p>
+              Revisões automáticas em intervalos otimizados para memória de
+              longo prazo.
+            </p>
+          </div>
+
+          <div class="metodo-card">
+            <div class="metodo-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <h3>Mini Desafios Diários</h3>
+            <p>
+              Pequenas missões diárias para manter o ritmo e a consistência.
+            </p>
+          </div>
+
+          <div class="metodo-card">
+            <div class="metodo-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Progresso Visual</h3>
+            <p>
+              Acompanhe seu desenvolvimento com gráficos e conquistas
+              desbloqueadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Laboratório -->
+    <section id="laboratorio" class="laboratorio">
+      <div class="container">
+        <h2 class="section-title">
+          <i class="fas fa-flask"></i> Laboratório de
+          <span class="text-gradient">Código</span>
+        </h2>
+        <p class="section-subtitle">
+          Experimente, teste e aprenda com nosso editor integrado.
+        </p>
+
+        <div class="lab-container">
+          <div class="lab-editor">
+            <div class="editor-tabs">
+              <button class="tab active" data-tab="html">HTML</button>
+              <button class="tab" data-tab="css">CSS</button>
+              <button class="tab" data-tab="js">JavaScript</button>
+              <button class="tab" data-tab="result">Resultado</button>
+            </div>
+
+            <div class="editor-content">
+              <div class="code-editor active" id="html-editor">
+                <div class="editor-header">
+                  <span>index.html</span>
+                  <button class="btn-run">
+                    <i class="fas fa-play"></i> Executar
+                  </button>
+                </div>
+                <textarea
+                  id="html-code"
+                  class="code-input"
+                  placeholder="Digite seu código HTML aqui..."
+                >
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Laboratório</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #1a1a2e;
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        button {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Olá, Dev!</h1>
+        <p>Este é seu laboratório de código.</p>
+        <p id="mensagem">Clique no botão para ver a mágica acontecer.</p>
+        <button onclick="mudarMensagem()">Clique Aqui</button>
+    </div>
+    
+    <script>
+        function mudarMensagem() {
+            document.getElementById("mensagem").textContent = "Você acaba de executar JavaScript!";
+            document.getElementById("mensagem").style.color = "#00ff88";
+        }
+    </script>
+</body>
+</html></textarea
+                >
+              </div>
+
+              <div class="code-editor" id="css-editor">
+                <div class="editor-header">
+                  <span>style.css</span>
+                  <button class="btn-run">
+                    <i class="fas fa-play"></i> Executar
+                  </button>
+                </div>
+                <textarea
+                  id="css-code"
+                  class="code-input"
+                  placeholder="Digite seu código CSS aqui..."
+                >
+/* Adicione estilos personalizados aqui */
+.container {
+    padding: 30px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+}
+
+p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #b0b0d0;
+}</textarea
+                >
+              </div>
+
+              <div class="code-editor" id="js-editor">
+                <div class="editor-header">
+                  <span>script.js</span>
+                  <button class="btn-run">
+                    <i class="fas fa-play"></i> Executar
+                  </button>
+                </div>
+                <textarea
+                  id="js-code"
+                  class="code-input"
+                  placeholder="Digite seu código JavaScript aqui..."
+                >
+// Adicione sua lógica JavaScript aqui
+
+function mudarMensagem() {
+    const mensagem = document.getElementById("mensagem");
+    mensagem.textContent = "JavaScript executado com sucesso!";
+    mensagem.style.color = "#00ff88";
+    mensagem.style.fontSize = "1.3rem";
+    mensagem.style.fontWeight = "bold";
+    
+    // Criar um elemento adicional
+    const novoElemento = document.createElement("div");
+    novoElemento.innerHTML = "<p>Novo elemento criado dinamicamente!</p>";
+    novoElemento.style.marginTop = "20px";
+    novoElemento.style.padding = "10px";
+    novoElemento.style.backgroundColor = "rgba(0, 255, 136, 0.1)";
+    novoElemento.style.borderRadius = "8px";
+    
+    document.querySelector(".container").appendChild(novoElemento);
+}</textarea
+                >
+              </div>
+
+              <div class="code-editor" id="result-editor">
+                <div class="editor-header">
+                  <span>Resultado</span>
+                  <div>
+                    <button class="btn-reset">
+                      <i class="fas fa-redo"></i> Resetar
+                    </button>
+                    <button class="btn-solution">
+                      <i class="fas fa-lightbulb"></i> Solução
+                    </button>
+                  </div>
+                </div>
+                <div class="result-preview">
+                  <iframe id="preview-frame"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lab-controls">
+            <h3>Controles do Laboratório</h3>
+            <div class="controls-grid">
+              <button class="control-btn" id="btn-executar">
+                <i class="fas fa-play-circle"></i> Executar Código
+              </button>
+              <button class="control-btn" id="btn-reset">
+                <i class="fas fa-redo"></i> Resetar Tudo
+              </button>
+              <button class="control-btn" id="btn-solution">
+                <i class="fas fa-lightbulb"></i> Mostrar Solução
+              </button>
+              <button class="control-btn" id="btn-save">
+                <i class="fas fa-save"></i> Salvar Snippet
+              </button>
+            </div>
+
+            <div class="lab-challenges">
+              <h4><i class="fas fa-puzzle-piece"></i> Mini Desafios</h4>
+              <div class="challenge">
+                <p>1. Altere a cor do botão para verde.</p>
+                <button class="btn-small">Experimentar</button>
+              </div>
+              <div class="challenge">
+                <p>2. Adicione um contador de cliques ao botão.</p>
+                <button class="btn-small">Experimentar</button>
+              </div>
+              <div class="challenge">
+                <p>3. Crie uma lista dinâmica com JavaScript.</p>
+                <button class="btn-small">Experimentar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Missões -->
+    <section id="missoes" class="missoes">
+      <div class="container">
+        <h2 class="section-title">
+          <i class="fas fa-trophy"></i> Sistema de
+          <span class="text-gradient">Missões</span>
+        </h2>
+        <p class="section-subtitle">
+          Complete missões, ganhe pontos e desbloqueie conquistas.
+        </p>
+
+        <div class="missoes-container">
+          <div class="missoes-progresso">
+            <h3>Seu Progresso</h3>
+            <div class="progresso-card">
+              <div class="progresso-info">
+                <div class="nivel-atual">
+                  <span class="nivel-tag">Iniciante</span>
+                  <span class="pontos">150/1000 pontos</span>
+                </div>
+                <div class="progresso-bar">
+                  <div class="progresso-fill" style="width: 15%"></div>
+                </div>
+              </div>
+
+              <div class="conquistas">
+                <h4>Conquistas Desbloqueadas</h4>
+                <div class="conquistas-grid">
+                  <div class="conquista conquista-desbloqueada">
+                    <i class="fas fa-code"></i>
+                    <span>Primeiro Código</span>
+                  </div>
+                  <div class="conquista conquista-desbloqueada">
+                    <i class="fas fa-check-circle"></i>
+                    <span>5 Exercícios</span>
+                  </div>
+                  <div class="conquista">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Primeiro Projeto</span>
+                  </div>
+                  <div class="conquista">
+                    <i class="fas fa-rocket"></i>
+                    <span>Dev Júnior</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="missoes-lista">
+            <h3>Missões da Semana</h3>
+            <div class="missao">
+              <div class="missao-info">
+                <h4>
+                  <i class="fas fa-star"></i> Criar uma Página HTML Completa
+                </h4>
+                <p>
+                  Desenvolva uma página com cabeçalho, conteúdo principal,
+                  rodapé e menu de navegação.
+                </p>
+                <div class="missao-recompensa">
+                  <span class="recompensa-pontos">+50 pontos</span>
+                  <span class="recompensa-badge">HTML Básico</span>
+                </div>
+              </div>
+              <button class="btn-missao">Iniciar Missão</button>
+            </div>
+
+            <div class="missao">
+              <div class="missao-info">
+                <h4><i class="fas fa-star"></i> Estilizar com Flexbox</h4>
+                <p>
+                  Crie um layout responsivo usando Flexbox para alinhar
+                  elementos de forma moderna.
+                </p>
+                <div class="missao-recompensa">
+                  <span class="recompensa-pontos">+75 pontos</span>
+                  <span class="recompensa-badge">CSS Intermediário</span>
+                </div>
+              </div>
+              <button class="btn-missao">Iniciar Missão</button>
+            </div>
+
+            <div class="missao">
+              <div class="missao-info">
+                <h4><i class="fas fa-star"></i> To-Do List em JavaScript</h4>
+                <p>
+                  Desenvolva uma lista de tarefas interativa com adição, remoção
+                  e marcação de itens.
+                </p>
+                <div class="missao-recompensa">
+                  <span class="recompensa-pontos">+100 pontos</span>
+                  <span class="recompensa-badge">JavaScript</span>
+                </div>
+              </div>
+              <button class="btn-missao">Iniciar Missão</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Projetos -->
+    <section id="projetos" class="projetos">
+      <div class="container">
+        <h2 class="section-title">
+          Projetos <span class="text-gradient">Práticos</span>
+        </h2>
+        <p class="section-subtitle">
+          Aplique seus conhecimentos em projetos reais.
+        </p>
+
+        <div class="projetos-grid">
+          <div class="projeto-card">
+            <div class="projeto-img">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div class="projeto-content">
+              <h3>To-Do List</h3>
+              <p>
+                Lista de tarefas interativa com JavaScript puro. Pratique
+                manipulação do DOM e eventos.
+              </p>
+              <div class="projeto-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <a href="#" class="btn-projeto"
+                >Ver Projeto <i class="fas fa-external-link-alt"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="projeto-card">
+            <div class="projeto-img">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="projeto-content">
+              <h3>Calculadora</h3>
+              <p>
+                Calculadora completa com operações básicas e avançadas. Ideal
+                para praticar lógica.
+              </p>
+              <div class="projeto-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <a href="#" class="btn-projeto"
+                >Ver Projeto <i class="fas fa-external-link-alt"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="projeto-card">
+            <div class="projeto-img">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="projeto-content">
+              <h3>Jogo da Memória</h3>
+              <p>
+                Jogo de memória com cartas. Pratique arrays, lógica de jogo e
+                manipulação de CSS.
+              </p>
+              <div class="projeto-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <a href="#" class="btn-projeto"
+                >Ver Projeto <i class="fas fa-external-link-alt"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="projeto-card">
+            <div class="projeto-img">
+              <i class="fas fa-id-card"></i>
+            </div>
+            <div class="projeto-content">
+              <h3>Portfólio Pessoal</h3>
+              <p>
+                Crie seu próprio portfólio online. Pratique design responsivo e
+                apresentação de projetos.
+              </p>
+              <div class="projeto-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Responsivo</span>
+              </div>
+              <a href="#" class="btn-projeto"
+                >Ver Projeto <i class="fas fa-external-link-alt"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-code"></i>
+            <span>FrontEnd<span class="logo-accent">Lab</span>
+          </div>
+          <p class="footer-desc">
+            A plataforma definitiva para aprender Front-End do zero ao avançado
+            com método científico e prática intensiva.
+          </p>
+
+          <div class="footer-links">
+            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#"><i class="fab fa-discord"></i> Comunidade</a>
+            <a href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+            <a href="#"><i class="fas fa-envelope"></i> Contato</a>
+          </div>
+
+          <div class="footer-copyright">
+            <p>&copy; 2023 FronteLab. Todos os direitos reservados.</p>
+            <p>Desenvolvido por Victor.Dev.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

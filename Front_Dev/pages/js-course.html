@@ -1,0 +1,2715 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curso de JavaScript - FrontEnd Master Path</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Estilos específicos para a página do curso JavaScript */
+      .curso-container {
+        padding-top: 120px;
+        min-height: 100vh;
+        background: var(--bg-primary);
+      }
+
+      .curso-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding: 40px 20px;
+        background: var(--gradient-dark);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .curso-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #f0db4f, #f7df1e);
+      }
+
+      .curso-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(240, 219, 79, 0.1);
+        padding: 10px 20px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(240, 219, 79, 0.3);
+      }
+
+      .curso-badge i {
+        font-size: 1.5rem;
+        color: #f0db4f;
+      }
+
+      .curso-badge span {
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .curso-descricao {
+        max-width: 700px;
+        margin: 0 auto 30px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .curso-metadata {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-secondary);
+      }
+
+      .meta-item i {
+        color: #f0db4f;
+      }
+
+      .curso-progresso {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .progresso-texto {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .nivel-section {
+        margin-bottom: 80px;
+        scroll-margin-top: 100px;
+      }
+
+      .nivel-titulo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .nivel-titulo i {
+        color: #f0db4f;
+      }
+
+      .nivel-descricao {
+        color: var(--text-secondary);
+        margin-bottom: 40px;
+        font-size: 1.1rem;
+      }
+
+      .conceito-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 40px;
+        margin-bottom: 40px;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .conceito-card:hover {
+        border-color: #f0db4f;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .conceito-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        color: #f0db4f;
+      }
+
+      .explicacao-simples,
+      .analogia,
+      .exemplo-pratico,
+      .erros-comuns,
+      .desafio-imediato {
+        margin-bottom: 35px;
+      }
+
+      .explicacao-simples h4,
+      .analogia h4,
+      .exemplo-pratico h4,
+      .erros-comuns h4,
+      .desafio-imediato h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        color: var(--text-primary);
+      }
+
+      .analogia h4 i {
+        color: var(--accent-warning);
+      }
+
+      .exemplo-pratico h4 i {
+        color: var(--accent-success);
+      }
+
+      .erros-comuns h4 i {
+        color: var(--accent-danger);
+      }
+
+      .desafio-imediato h4 i {
+        color: #f0db4f;
+      }
+
+      .code-window.mini {
+        max-width: 100%;
+        margin: 20px 0;
+      }
+
+      .code-window.mini .code-content {
+        padding: 15px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .erros-comuns ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .erros-comuns li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+        color: var(--text-secondary);
+      }
+
+      .erros-comuns li::before {
+        content: "⚠️";
+        position: absolute;
+        left: 0;
+      }
+
+      .btn-desafio {
+        background: linear-gradient(90deg, #f0db4f, #f7df1e);
+        color: #333;
+        border: none;
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-desafio:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(240, 219, 79, 0.4);
+      }
+
+      .demonstracao-viva {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        margin: 30px 0;
+        border: 1px solid rgba(240, 219, 79, 0.3);
+      }
+
+      .demo-container {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .demo-controls {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .demo-preview {
+        flex: 2;
+        min-width: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 20px;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .control-group {
+        margin-bottom: 20px;
+      }
+
+      .control-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+      }
+
+      .js-console {
+        background: #1e1e1e;
+        color: #f8f8f2;
+        border-radius: 8px;
+        padding: 15px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        min-height: 200px;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 15px;
+      }
+
+      .console-line {
+        margin-bottom: 5px;
+        padding: 3px 0;
+      }
+
+      .console-input {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .console-input input {
+        flex: 1;
+        background: #2e2e2e;
+        border: 1px solid #444;
+        color: #f8f8f2;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .console-input button {
+        background: #f0db4f;
+        color: #333;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .exemplos-interativos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .exemplo-interativo {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .exemplo-interativo:hover {
+        border-color: #f0db4f;
+        transform: translateY(-5px);
+      }
+
+      .exemplo-interativo h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        color: #f0db4f;
+      }
+
+      .exemplo-codigo {
+        background: #1e1e2e;
+        border-radius: 8px;
+        padding: 15px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        margin: 15px 0;
+        overflow-x: auto;
+      }
+
+      .exemplo-resultado {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 100px;
+      }
+
+      .toggle-button {
+        background: rgba(240, 219, 79, 0.2);
+        border: 1px solid #f0db4f;
+        color: var(--text-primary);
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.9rem;
+      }
+
+      .toggle-button:hover {
+        background: rgba(240, 219, 79, 0.4);
+      }
+
+      .toggle-button.ativo {
+        background: #f0db4f;
+        color: #333;
+      }
+
+      .codigo-executavel {
+        background: #2d2d2d;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .codigo-executavel pre {
+        margin: 0;
+        overflow-x: auto;
+      }
+
+      .btn-executar {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #f0db4f;
+        color: #333;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .btn-executar:hover {
+        background: #f7df1e;
+      }
+
+      .resultado-execucao {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 50px;
+        font-family: "JetBrains Mono", monospace;
+        color: #00ff88;
+      }
+
+      .tabela-propriedades {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: var(--bg-card);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .tabela-propriedades th,
+      .tabela-propriedades td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .tabela-propriedades th {
+        background: rgba(240, 219, 79, 0.2);
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      .tabela-propriedades tr:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .tabela-propriedades .exemplo {
+        color: #f0db4f;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+      }
+
+      .quiz-container {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        margin: 40px 0;
+        border: 1px solid var(--border-color);
+      }
+
+      .quiz-pergunta {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        color: var(--text-primary);
+      }
+
+      .quiz-opcoes {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .quiz-opcao {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 15px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .quiz-opcao:hover {
+        background: rgba(240, 219, 79, 0.1);
+        border-color: #f0db4f;
+      }
+
+      .quiz-opcao.selecionada {
+        background: rgba(0, 255, 136, 0.1);
+        border-color: var(--accent-success);
+      }
+
+      .quiz-feedback {
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: none;
+      }
+
+      .quiz-feedback.correta {
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid var(--accent-success);
+        color: var(--accent-success);
+        display: block;
+      }
+
+      .quiz-feedback.incorreta {
+        background: rgba(255, 0, 85, 0.1);
+        border: 1px solid var(--accent-danger);
+        color: var(--accent-danger);
+        display: block;
+      }
+
+      .btn-quiz {
+        background: linear-gradient(90deg, #f0db4f, #f7df1e);
+        color: #333;
+        border: none;
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 15px;
+      }
+
+      .btn-quiz:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(240, 219, 79, 0.4);
+      }
+
+      .projeto-mini {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        padding: 30px;
+        margin: 40px 0;
+        border: 1px solid var(--border-color);
+      }
+
+      .projeto-mini h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #f0db4f;
+        margin-bottom: 20px;
+      }
+
+      .projeto-codigo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .projeto-codigo {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .editor-area {
+        background: #1e1e1e;
+        border-radius: 8px;
+        padding: 15px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        min-height: 200px;
+        max-height: 300px;
+        overflow: auto;
+      }
+
+      .editor-area:focus {
+        outline: 2px solid #f0db4f;
+      }
+
+      .recursos-adicionais {
+        background: var(--gradient-dark);
+        border-radius: var(--border-radius);
+        padding: 40px;
+        margin-top: 60px;
+        border: 1px solid var(--border-color);
+      }
+
+      .recursos-lista {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .recurso-item {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+
+      .recurso-item:hover {
+        border-color: #f0db4f;
+        transform: translateY(-3px);
+      }
+
+      .recurso-item h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .recurso-item p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .api-demo {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        padding: 25px;
+        margin: 25px 0;
+        border-left: 4px solid #f0db4f;
+      }
+
+      .api-result {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+        min-height: 100px;
+        max-height: 300px;
+        overflow-y: auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+      }
+
+      .api-result pre {
+        margin: 0;
+      }
+
+      .variaveis-demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .variavel-card {
+        background: rgba(240, 219, 79, 0.1);
+        border: 1px solid rgba(240, 219, 79, 0.3);
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+      }
+
+      .variavel-nome {
+        font-family: "JetBrains Mono", monospace;
+        color: #f0db4f;
+        margin-bottom: 5px;
+      }
+
+      .variavel-valor {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text-primary);
+      }
+
+      .variavel-tipo {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-top: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .curso-header {
+          padding: 30px 15px;
+        }
+
+        .curso-metadata {
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+        }
+
+        .conceito-card {
+          padding: 25px;
+        }
+
+        .demo-container {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-code"></i>
+          <span>FrontEnd<span class="logo-accent">Master</span>Path</span>
+        </div>
+        <div class="nav-links">
+          <a href="../index.html" class="nav-link"
+            ><i class="fas fa-home"></i> Início</a
+          >
+          <a href="#fundamentos" class="nav-link active"
+            ><i class="fab fa-js-square"></i> Fundamentos</a
+          >
+          <a href="#dom" class="nav-link"
+            ><i class="fab fa-js-square"></i> DOM & Eventos</a
+          >
+          <a href="#avancado" class="nav-link"
+            ><i class="fab fa-js-square"></i> JS Avançado</a
+          >
+          <a href="../index.html#laboratorio" class="nav-link"
+            ><i class="fas fa-flask"></i> Laboratório</a
+          >
+        </div>
+        <button class="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <main class="curso-container">
+      <div class="container">
+        <!-- Cabeçalho do Curso -->
+        <header class="curso-header">
+          <div class="curso-badge">
+            <i class="fab fa-js-square"></i>
+            <span>JavaScript</span>
+          </div>
+          <h1>Curso Completo de JavaScript</h1>
+          <p class="curso-descricao">
+            Domine a linguagem da web interativa. Aprenda desde os fundamentos
+            até conceitos avançados como async/await, APIs e manipulação do DOM.
+          </p>
+
+          <div class="curso-metadata">
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>15 horas de conteúdo</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-check-circle"></i>
+              <span>75 exercícios práticos</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-chart-line"></i>
+              <span>Do iniciante ao avançado</span>
+            </div>
+          </div>
+
+          <div class="curso-progresso">
+            <div class="progresso-bar">
+              <div class="progresso-fill" style="width: 15%"></div>
+            </div>
+            <span class="progresso-texto">15% concluído</span>
+          </div>
+        </header>
+
+        <!-- Conteúdo do Curso -->
+        <div class="curso-conteudo">
+          <!-- Seção Fundamentos -->
+          <section id="fundamentos" class="nivel-section">
+            <h2 class="nivel-titulo">
+              <i class="fas fa-star"></i> Fundamentos do JavaScript
+            </h2>
+            <p class="nivel-descricao">
+              Aprenda os conceitos básicos: variáveis, tipos de dados,
+              operadores, estruturas de controle e funções.
+            </p>
+
+            <!-- Conceito: Variáveis e Tipos -->
+            <div class="conceito-card">
+              <h3><i class="fas fa-code"></i> Variáveis e Tipos de Dados</h3>
+
+              <div class="explicacao-simples">
+                <h4>Explicação Simples:</h4>
+                <p>
+                  Variáveis são como "caixas" onde guardamos informações.
+                  JavaScript tem 3 formas de criar variáveis (var, let, const) e
+                  vários tipos de dados diferentes.
+                </p>
+              </div>
+
+              <div class="analogia">
+                <h4><i class="fas fa-lightbulb"></i> Analogia:</h4>
+                <p>
+                  Imagine uma estante com diferentes tipos de recipientes: potes
+                  de vidro (const - não muda), caixas de papelão (let - pode
+                  trocar o conteúdo), e sacolas (var - antigo, menos seguro).
+                  Cada um guarda um tipo diferente de coisa.
+                </p>
+              </div>
+
+              <div class="exemplo-pratico">
+                <h4><i class="fas fa-code"></i> Exemplo Prático:</h4>
+
+                <div class="demonstracao-viva">
+                  <h4>Console JavaScript Interativo:</h4>
+                  <div class="js-console" id="js-console">
+                    <div class="console-line">
+                      > Bem-vindo ao console JavaScript!
+                    </div>
+                    <div class="console-line">
+                      > Digite código JavaScript e pressione Enter
+                    </div>
+                    <div class="console-line">
+                      > Exemplo: let nome = "Dev"; console.log("Olá, " + nome);
+                    </div>
+                  </div>
+                  <div class="console-input">
+                    <input
+                      type="text"
+                      id="js-input"
+                      placeholder="Digite código JavaScript..."
+                      onkeypress="if(event.key === 'Enter') executarNoConsole()"
+                    />
+                    <button onclick="executarNoConsole()">Executar</button>
+                  </div>
+                </div>
+
+                <div class="variaveis-demo">
+                  <div class="variavel-card">
+                    <div class="variavel-nome">const PI</div>
+                    <div class="variavel-valor" id="valor-pi">3.14159</div>
+                    <div class="variavel-tipo">Number (constante)</div>
+                  </div>
+                  <div class="variavel-card">
+                    <div class="variavel-nome">let contador</div>
+                    <div class="variavel-valor" id="valor-contador">0</div>
+                    <div class="variavel-tipo">Number (mutável)</div>
+                  </div>
+                  <div class="variavel-card">
+                    <div class="variavel-nome">var mensagem</div>
+                    <div class="variavel-valor" id="valor-mensagem">"Olá!"</div>
+                    <div class="variavel-tipo">String (antigo)</div>
+                  </div>
+                  <div class="variavel-card">
+                    <div class="variavel-nome">const ativo</div>
+                    <div class="variavel-valor" id="valor-ativo">true</div>
+                    <div class="variavel-tipo">Boolean</div>
+                  </div>
+                </div>
+
+                <div class="code-window mini">
+                  <div class="code-window-header">
+                    <span>variaveis.js</span>
+                  </div>
+                  <div class="code-content">
+                    <pre><code>// Declaração de variáveis
+const PI = 3.14159;          // Constante (não pode mudar)
+let contador = 0;            // Mutável (pode mudar)
+var mensagem = "Olá!";       // Forma antiga (evitar)
+
+// Tipos de dados
+let nome = "JavaScript";     // String (texto)
+let idade = 25;              // Number (número)
+let ativo = true;            // Boolean (true/false)
+let lista = [1, 2, 3];       // Array (lista)
+let pessoa = {               // Object (objeto)
+    nome: "Maria",
+    idade: 30
+};
+let nada = null;             // Null (valor nulo)
+let indefinido;              // Undefined (não definido)
+
+// Operações com variáveis
+contador = contador + 1;     // Incremento
+let saudacao = "Olá, " + nome + "!"; // Concatenação
+let dobroIdade = idade * 2;  // Multiplicação
+
+// Conversão de tipos
+let textoNumero = "42";
+let numero = Number(textoNumero); // Converte para número
+let texto = String(idade);        // Converte para texto</code></pre>
+                  </div>
+                </div>
+
+                <div class="codigo-executavel">
+                  <button
+                    class="btn-executar"
+                    onclick="executarExemploVariaveis()"
+                  >
+                    <i class="fas fa-play"></i> Executar Exemplo
+                  </button>
+                  <pre><code class="language-javascript">// Experimente modificar este código
+let a = 10;
+let b = 5;
+
+console.log("Soma:", a + b);
+console.log("Subtração:", a - b);
+console.log("Multiplicação:", a * b);
+console.log("Divisão:", a / b);
+
+// Modifique os valores e execute novamente</code></pre>
+                  <div
+                    class="resultado-execucao"
+                    id="resultado-variaveis"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="erros-comuns">
+                <h4>
+                  <i class="fas fa-exclamation-triangle"></i> Erros Comuns:
+                </h4>
+                <ul>
+                  <li>Usar var em vez de let/const (escopo problemático)</li>
+                  <li>Tentar mudar valor de const (causa erro)</li>
+                  <li>
+                    Confundir == (igualdade solta) com === (igualdade estrita)
+                  </li>
+                  <li>Esquecer de declarar variável (cria variável global)</li>
+                  <li>
+                    Confundir null (valor vazio) com undefined (não definido)
+                  </li>
+                </ul>
+              </div>
+
+              <div class="quiz-container">
+                <h4>📝 Teste Seu Conhecimento:</h4>
+                <div class="quiz-pergunta">
+                  Qual é a diferença principal entre let, const e var em
+                  JavaScript?
+                </div>
+                <div class="quiz-opcoes">
+                  <div class="quiz-opcao" data-resposta="escopo">
+                    <strong>let/const</strong> têm escopo de bloco,
+                    <strong>var</strong> tem escopo de função
+                  </div>
+                  <div class="quiz-opcao" data-resposta="tipo">
+                    <strong>let</strong> para números,
+                    <strong>const</strong> para textos,
+                    <strong>var</strong> para booleanos
+                  </div>
+                  <div class="quiz-opcao" data-resposta="moderno">
+                    <strong>let/const</strong> são mais modernos, mas funcionam
+                    igual ao <strong>var</strong>
+                  </div>
+                  <div class="quiz-opcao" data-resposta="performance">
+                    <strong>const</strong> é mais rápido que
+                    <strong>let</strong>, que é mais rápido que
+                    <strong>var</strong>
+                  </div>
+                </div>
+                <button class="btn-quiz" onclick="verificarRespostaVariaveis()">
+                  Verificar Resposta
+                </button>
+                <div class="quiz-feedback"></div>
+              </div>
+
+              <div class="desafio-imediato">
+                <h4><i class="fas fa-flag-checkered"></i> Desafio Imediato:</h4>
+                <p>
+                  Crie um programa que: 1) Declare uma constante com seu nome,
+                  2) Declare uma variável let com sua idade, 3) Calcule quantos
+                  dias você já viveu (idade * 365), 4) Exiba uma mensagem no
+                  formato: "Olá [nome], você já viveu aproximadamente [dias]
+                  dias!"
+                </p>
+                <button class="btn-desafio" onclick="abrirDesafioVariaveis()">
+                  <i class="fas fa-play"></i> Iniciar Desafio
+                </button>
+              </div>
+            </div>
+
+            <!-- Conceito: Estruturas de Controle -->
+            <div class="conceito-card">
+              <h3><i class="fas fa-sitemap"></i> Estruturas de Controle</h3>
+
+              <div class="explicacao-simples">
+                <h4>Explicação Simples:</h4>
+                <p>
+                  São instruções que controlam o fluxo do programa: if/else para
+                  decisões, loops para repetições, e switch para múltiplas
+                  opções.
+                </p>
+              </div>
+
+              <div class="analogia">
+                <h4><i class="fas fa-lightbulb"></i> Analogia:</h4>
+                <p>
+                  Pense em um GPS: if/else são como "se estiver chovendo, pegue
+                  o guarda-chuva; senão, saia sem". Loops são como "repita este
+                  trecho da estrada 5 vezes". Switch é como "se for
+                  segunda-feira, vá à academia; se for terça, vá ao mercado;
+                  etc".
+                </p>
+              </div>
+
+              <div class="exemplo-pratico">
+                <h4><i class="fas fa-code"></i> Exemplo Prático:</h4>
+
+                <div class="demonstracao-viva">
+                  <div class="demo-container">
+                    <div class="demo-controls">
+                      <h4>Simulador de Decisões:</h4>
+                      <div class="control-group">
+                        <label>Hora do dia:</label>
+                        <select id="hora-dia" onchange="atualizarDecisao()">
+                          <option value="6">6h (Manhã cedo)</option>
+                          <option value="9">9h (Trabalho)</option>
+                          <option value="13">13h (Almoço)</option>
+                          <option value="18">18h (Tarde)</option>
+                          <option value="22">22h (Noite)</option>
+                        </select>
+                      </div>
+
+                      <div class="control-group">
+                        <label>Clima:</label>
+                        <select id="clima" onchange="atualizarDecisao()">
+                          <option value="sol">☀️ Ensolarado</option>
+                          <option value="chuva">🌧️ Chuvoso</option>
+                          <option value="nublado">☁️ Nublado</option>
+                        </select>
+                      </div>
+
+                      <div class="control-group">
+                        <label>Fim de semana?</label>
+                        <select id="fim-semana" onchange="atualizarDecisao()">
+                          <option value="false">Não</option>
+                          <option value="true">Sim</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="demo-preview">
+                      <div id="decisao-resultado" style="text-align: center">
+                        <h4 style="margin-bottom: 15px">Decisão do Dia:</h4>
+                        <p id="decisao-texto">
+                          Selecione as opções para ver a decisão
+                        </p>
+                        <div
+                          id="decisao-codigo"
+                          style="
+                            background: #1e1e2e;
+                            border-radius: 8px;
+                            padding: 15px;
+                            margin-top: 20px;
+                            font-family: 'JetBrains Mono', monospace;
+                            font-size: 0.8rem;
+                            text-align: left;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="exemplos-interativos">
+                  <div class="exemplo-interativo">
+                    <h4><i class="fas fa-random"></i> If/Else</h4>
+                    <div class="exemplo-codigo">
+                      <code
+                        >let nota = 8; let situacao; if (nota >= 7) { situacao =
+                        "Aprovado"; } else if (nota >= 5) { situacao =
+                        "Recuperação"; } else { situacao = "Reprovado"; }
+                        console.log(situacao); // "Aprovado"</code
+                      >
+                    </div>
+                    <button
+                      class="toggle-button"
+                      onclick="executarIfElse()"
+                      style="margin-top: 10px"
+                    >
+                      <i class="fas fa-play"></i> Executar
+                    </button>
+                  </div>
+
+                  <div class="exemplo-interativo">
+                    <h4><i class="fas fa-redo"></i> Loops</h4>
+                    <div class="exemplo-codigo">
+                      <code
+                        >// For loop for (let i = 0; i < 5; i++) {
+                        console.log("Número:", i); } // While loop let contador
+                        = 0; while (contador < 3) { console.log("Contando:",
+                        contador); contador++; }</code
+                      >
+                    </div>
+                    <button
+                      class="toggle-button"
+                      onclick="executarLoops()"
+                      style="margin-top: 10px"
+                    >
+                      <i class="fas fa-play"></i> Executar
+                    </button>
+                  </div>
+
+                  <div class="exemplo-interativo">
+                    <h4><i class="fas fa-th-list"></i> Switch</h4>
+                    <div class="exemplo-codigo">
+                      <code
+                        >let dia = "segunda"; let mensagem; switch(dia) { case
+                        "segunda": mensagem = "Começo da semana!"; break; case
+                        "sexta": mensagem = "Sextou! 🎉"; break; default:
+                        mensagem = "Dia normal"; } console.log(mensagem);</code
+                      >
+                    </div>
+                    <button
+                      class="toggle-button"
+                      onclick="executarSwitch()"
+                      style="margin-top: 10px"
+                    >
+                      <i class="fas fa-play"></i> Executar
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="projeto-mini">
+                <h3>
+                  <i class="fas fa-calculator"></i> Mini Projeto: Calculadora
+                  Simples
+                </h3>
+                <p>
+                  Crie uma calculadora que recebe dois números e uma operação,
+                  então retorna o resultado.
+                </p>
+
+                <div class="projeto-codigo">
+                  <div>
+                    <h4>Código:</h4>
+                    <div
+                      class="editor-area"
+                      id="calculadora-code"
+                      contenteditable="true"
+                    >
+                      function calcular(num1, num2, operacao) { // Complete esta
+                      função // operacao pode ser: '+', '-', '*', '/' // Retorne
+                      o resultado ou mensagem de erro if (operacao === '+') {
+                      return num1 + num2; } // Adicione outras operações aqui
+                      return "Operação inválida"; } // Teste a função
+                      console.log(calcular(10, 5, '+')); // Deve mostrar 15
+                      console.log(calcular(10, 5, '-')); // Deve mostrar 5
+                      console.log(calcular(10, 5, '*')); // Deve mostrar 50
+                      console.log(calcular(10, 5, '/')); // Deve mostrar 2
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4>Resultado:</h4>
+                    <div class="exemplo-resultado" id="calculadora-resultado">
+                      O resultado aparecerá aqui após executar.
+                    </div>
+                    <button
+                      class="btn-desafio"
+                      onclick="executarCalculadora()"
+                      style="margin-top: 15px; width: 100%"
+                    >
+                      <i class="fas fa-play"></i> Executar Calculadora
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Seção DOM & Eventos -->
+          <section id="dom" class="nivel-section">
+            <h2 class="nivel-titulo">
+              <i class="fas fa-star-half-alt"></i> DOM & Eventos
+            </h2>
+            <p class="nivel-descricao">
+              Aprenda a manipular elementos HTML, responder a eventos do usuário
+              e criar páginas interativas dinâmicas.
+            </p>
+
+            <!-- Conceito: Manipulação do DOM -->
+            <div class="conceito-card">
+              <h3><i class="fas fa-sitemap"></i> Manipulação do DOM</h3>
+
+              <div class="explicacao-simples">
+                <h4>Explicação Simples:</h4>
+                <p>
+                  O DOM (Document Object Model) é a representação em árvore do
+                  HTML. JavaScript pode acessar e modificar esta árvore para
+                  criar páginas interativas.
+                </p>
+              </div>
+
+              <div class="analogia">
+                <h4><i class="fas fa-lightbulb"></i> Analogia:</h4>
+                <p>
+                  Imagine uma casa de bonecas com móveis. O DOM é a casa
+                  completa, cada móvel é um elemento. JavaScript é como suas
+                  mãos: pode mover os móveis, trocar de lugar, pintar as paredes
+                  ou até construir novos cômodos.
+                </p>
+              </div>
+
+              <div class="exemplo-pratico">
+                <h4><i class="fas fa-code"></i> Exemplo Prático:</h4>
+
+                <div class="demonstracao-viva">
+                  <div class="demo-container">
+                    <div class="demo-controls">
+                      <h4>Editor de Elementos DOM:</h4>
+                      <div class="control-group">
+                        <label>Texto do Elemento:</label>
+                        <input
+                          type="text"
+                          id="dom-texto"
+                          value="Olá, DOM!"
+                          placeholder="Digite um texto"
+                        />
+                      </div>
+
+                      <div class="control-group">
+                        <label>Cor do Texto:</label>
+                        <select id="dom-cor">
+                          <option value="#ffffff">Branco</option>
+                          <option value="#00ff88">Verde Neon</option>
+                          <option value="#00dbde">Ciano</option>
+                          <option value="#fc00ff">Rosa</option>
+                          <option value="#f0db4f">Amarelo JS</option>
+                        </select>
+                      </div>
+
+                      <div class="control-group">
+                        <label>Tamanho da Fonte:</label>
+                        <input
+                          type="range"
+                          id="dom-tamanho"
+                          min="12"
+                          max="48"
+                          value="24"
+                        />
+                        <span id="tamanho-valor">24px</span>
+                      </div>
+
+                      <div class="control-group">
+                        <label>Ações:</label>
+                        <div
+                          style="
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+                            margin-top: 10px;
+                          "
+                        >
+                          <button
+                            class="toggle-button"
+                            onclick="atualizarDOM()"
+                          >
+                            Atualizar
+                          </button>
+                          <button
+                            class="toggle-button"
+                            onclick="adicionarElemento()"
+                          >
+                            Adicionar
+                          </button>
+                          <button
+                            class="toggle-button"
+                            onclick="removerElemento()"
+                          >
+                            Remover
+                          </button>
+                          <button
+                            class="toggle-button"
+                            onclick="animarElemento()"
+                          >
+                            Animar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="demo-preview">
+                      <div
+                        id="dom-demo"
+                        style="
+                          padding: 30px;
+                          min-height: 200px;
+                          display: flex;
+                          flex-direction: column;
+                          align-items: center;
+                          justify-content: center;
+                          gap: 15px;
+                        "
+                      >
+                        <div
+                          id="elemento-dom"
+                          style="
+                            font-size: 24px;
+                            color: white;
+                            padding: 15px;
+                            background: rgba(106, 17, 203, 0.3);
+                            border-radius: 8px;
+                            transition: all 0.3s ease;
+                          "
+                        >
+                          Olá, DOM!
+                        </div>
+                        <div
+                          style="
+                            font-size: 0.9rem;
+                            color: #888;
+                            text-align: center;
+                          "
+                        >
+                          Modifique este elemento usando os controles.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tabela-propriedades">
+                  <h4>📋 Métodos Comuns do DOM:</h4>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Método</th>
+                        <th>Descrição</th>
+                        <th>Exemplo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>document.getElementById()</td>
+                        <td>Seleciona elemento por ID</td>
+                        <td class="exemplo">
+                          let el = document.getElementById('meuId');
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>document.querySelector()</td>
+                        <td>
+                          Seleciona primeiro elemento que corresponde ao seletor
+                          CSS
+                        </td>
+                        <td class="exemplo">
+                          let el = document.querySelector('.minhaClasse');
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>element.textContent</td>
+                        <td>Define ou obtém texto do elemento</td>
+                        <td class="exemplo">el.textContent = 'Novo texto';</td>
+                      </tr>
+                      <tr>
+                        <td>element.innerHTML</td>
+                        <td>Define ou obtém HTML interno</td>
+                        <td class="exemplo">
+                          el.innerHTML = '&lt;strong&gt;Texto&lt;/strong&gt;';
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>element.style</td>
+                        <td>Acessa estilos CSS do elemento</td>
+                        <td class="exemplo">el.style.color = 'red';</td>
+                      </tr>
+                      <tr>
+                        <td>document.createElement()</td>
+                        <td>Cria novo elemento HTML</td>
+                        <td class="exemplo">
+                          let novo = document.createElement('div');
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>element.appendChild()</td>
+                        <td>Adiciona elemento filho</td>
+                        <td class="exemplo">pai.appendChild(filho);</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conceito: Eventos -->
+            <div class="conceito-card">
+              <h3><i class="fas fa-mouse-pointer"></i> Eventos JavaScript</h3>
+
+              <div class="explicacao-simples">
+                <h4>Explicação Simples:</h4>
+                <p>
+                  Eventos são ações que acontecem na página (cliques, teclas
+                  pressionadas, movimento do mouse). JavaScript pode "ouvir"
+                  esses eventos e responder a eles.
+                </p>
+              </div>
+
+              <div class="analogia">
+                <h4><i class="fas fa-lightbulb"></i> Analogia:</h4>
+                <p>
+                  Pense em um interfone: quando alguém aperta o botão (evento),
+                  toca um som (ouvinte) e você pode atender (função de
+                  callback). JavaScript configura esses "interfones" por toda a
+                  página.
+                </p>
+              </div>
+
+              <div class="exemplo-pratico">
+                <h4><i class="fas fa-code"></i> Exemplo Prático:</h4>
+
+                <div class="demonstracao-viva">
+                  <h4>Área de Eventos Interativa:</h4>
+                  <div
+                    id="area-eventos"
+                    style="
+                      height: 250px;
+                      background: rgba(106, 17, 203, 0.1);
+                      border: 2px dashed rgba(106, 17, 203, 0.3);
+                      border-radius: 12px;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      gap: 15px;
+                      position: relative;
+                      overflow: hidden;
+                    "
+                  >
+                    <div id="evento-mensagem" style="text-align: center">
+                      <h4 style="margin-bottom: 10px">
+                        Interaja com esta área!
+                      </h4>
+                      <p>Clique, passe o mouse, pressione teclas...</p>
+                    </div>
+
+                    <button
+                      id="botao-evento"
+                      style="
+                        padding: 12px 24px;
+                        background: linear-gradient(90deg, #f0db4f, #f7df1e);
+                        color: #333;
+                        border: none;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        cursor: pointer;
+                      "
+                    >
+                      Clique-me!
+                    </button>
+
+                    <div
+                      id="contador-eventos"
+                      style="
+                        position: absolute;
+                        bottom: 10px;
+                        left: 10px;
+                        background: rgba(0, 0, 0, 0.5);
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        font-size: 0.8rem;
+                      "
+                    >
+                      Cliques: <span id="clique-count">0</span> | Mouse:
+                      <span id="mouse-pos">0,0</span>
+                    </div>
+
+                    <div
+                      id="tecla-info"
+                      style="
+                        position: absolute;
+                        bottom: 10px;
+                        right: 10px;
+                        background: rgba(0, 0, 0, 0.5);
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        font-size: 0.8rem;
+                        display: none;
+                      "
+                    >
+                      Tecla: <span id="tecla-letra"></span>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      margin-top: 20px;
+                      display: flex;
+                      flex-wrap: wrap;
+                      gap: 10px;
+                    "
+                  >
+                    <button class="toggle-button" onclick="ativarEventos()">
+                      <i class="fas fa-play"></i> Ativar Eventos
+                    </button>
+                    <button class="toggle-button" onclick="desativarEventos()">
+                      <i class="fas fa-stop"></i> Desativar Eventos
+                    </button>
+                    <button
+                      class="toggle-button"
+                      onclick="mostrarCodigoEventos()"
+                    >
+                      <i class="fas fa-code"></i> Ver Código
+                    </button>
+                  </div>
+                </div>
+
+                <div class="code-window mini">
+                  <div class="code-window-header">
+                    <span>eventos.js</span>
+                  </div>
+                  <div class="code-content">
+                    <pre><code>// Ouvinte de evento - forma moderna
+botao.addEventListener('click', function(event) {
+    console.log('Botão clicado!');
+    console.log('Coordenadas:', event.clientX, event.clientY);
+});
+
+// Múltiplos eventos no mesmo elemento
+const area = document.getElementById('area-eventos');
+
+area.addEventListener('mouseenter', function() {
+    this.style.backgroundColor = 'rgba(0, 255, 136, 0.1)';
+});
+
+area.addEventListener('mouseleave', function() {
+    this.style.backgroundColor = 'rgba(106, 17, 203, 0.1)';
+});
+
+// Evento de teclado
+document.addEventListener('keydown', function(event) {
+    console.log('Tecla pressionada:', event.key);
+    
+    if (event.key === 'Escape') {
+        console.log('Escape pressionado!');
+    }
+});
+
+// Evento de formulário
+formulario.addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita recarregar a página
+    console.log('Formulário enviado!');
+});
+
+// Remover evento
+function meuEvento() {
+    console.log('Evento executado');
+}
+
+botao.addEventListener('click', meuEvento);
+// Para remover:
+// botao.removeEventListener('click', meuEvento);</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Seção Avançado -->
+          <section id="avancado" class="nivel-section">
+            <h2 class="nivel-titulo">
+              <i class="fas fa-star"></i> JavaScript Avançado
+            </h2>
+            <p class="nivel-descricao">
+              Domine conceitos avançados: funções assíncronas, APIs, manipulação
+              de arrays, e prepare-se para frameworks modernos.
+            </p>
+
+            <!-- Conceito: Async/Await & APIs -->
+            <div class="conceito-card">
+              <h3><i class="fas fa-cloud"></i> Async/Await & APIs</h3>
+
+              <div class="explicacao-simples">
+                <h4>Explicação Simples:</h4>
+                <p>
+                  JavaScript assíncrono permite que operações demoradas (como
+                  buscar dados da internet) não bloqueiem o restante do código.
+                  APIs são serviços que podemos acessar para obter dados
+                  externos.
+                </p>
+              </div>
+
+              <div class="analogia">
+                <h4><i class="fas fa-lightbulb"></i> Analogia:</h4>
+                <p>
+                  Imagine fazer um pedido em um restaurante: você dá o pedido
+                  (faz uma requisição), continua conversando (código continua
+                  executando), e quando a comida fica pronta (resposta), você
+                  come (processa os dados). Não precisa ficar parado esperando
+                  na cozinha.
+                </p>
+              </div>
+
+              <div class="exemplo-pratico">
+                <h4><i class="fas fa-code"></i> Exemplo Prático:</h4>
+
+                <div class="api-demo">
+                  <h4>Demonstração de API - Buscar Dados de Usuário</h4>
+                  <p>
+                    Esta demonstração usa a API pública JSONPlaceholder para
+                    buscar dados de usuários fictícios.
+                  </p>
+
+                  <div style="display: flex; gap: 10px; margin: 15px 0">
+                    <button class="toggle-button" onclick="buscarUsuario(1)">
+                      Buscar Usuário 1
+                    </button>
+                    <button
+                      class="toggle-button"
+                      onclick="buscarUsuarioAleatorio()"
+                    >
+                      Usuário Aleatório
+                    </button>
+                    <button
+                      class="toggle-button"
+                      onclick="buscarVariosUsuarios()"
+                    >
+                      Buscar 5 Usuários
+                    </button>
+                  </div>
+
+                  <div class="api-result" id="api-result">
+                    <p style="color: #888; text-align: center; margin: 30px 0">
+                      Clique em um botão para buscar dados da API
+                    </p>
+                  </div>
+                </div>
+
+                <div class="code-window mini">
+                  <div class="code-window-header">
+                    <span>async-await.js</span>
+                  </div>
+                  <div class="code-content">
+                    <pre><code>// Forma antiga: Promises com .then()
+fetch('https://jsonplaceholder.typicode.com/users/1')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Usuário:', data);
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+
+// Forma moderna: Async/Await
+async function buscarUsuario(id) {
+    try {
+        // Aguarda a resposta da API
+        const response = await fetch(
+            `https://jsonplaceholder.typicode.com/users/${id}`
+        );
+        
+        // Aguarda a conversão para JSON
+        const usuario = await response.json();
+        
+        // Retorna os dados
+        return usuario;
+    } catch (error) {
+        console.error('Erro ao buscar usuário:', error);
+        throw error; // Re-lança o erro
+    }
+}
+
+// Usando a função async
+async function mostrarUsuario() {
+    try {
+        const usuario = await buscarUsuario(1);
+        console.log('Nome:', usuario.name);
+        console.log('Email:', usuario.email);
+    } catch (error) {
+        console.error('Falha ao mostrar usuário:', error);
+    }
+}
+
+// Chamando a função
+mostrarUsuario();
+
+// Múltiplas requisições em paralelo
+async function buscarVariosUsuarios() {
+    try {
+        const [user1, user2, user3] = await Promise.all([
+            buscarUsuario(1),
+            buscarUsuario(2),
+            buscarUsuario(3)
+        ]);
+        
+        console.log('Usuários:', user1, user2, user3);
+    } catch (error) {
+        console.error('Erro em uma das requisições:', error);
+    }
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conceito: Arrays e Métodos Funcionais -->
+            <div class="conceito-card">
+              <h3>
+                <i class="fas fa-layer-group"></i> Arrays e Métodos Funcionais
+              </h3>
+
+              <div class="explicacao-simples">
+                <h4>Explicação Simples:</h4>
+                <p>
+                  Arrays são listas de valores. Métodos funcionais como map,
+                  filter e reduce permitem transformar, filtrar e reduzir arrays
+                  de forma elegante e poderosa.
+                </p>
+              </div>
+
+              <div class="analogia">
+                <h4><i class="fas fa-lightbulb"></i> Analogia:</h4>
+                <p>
+                  Imagine uma linha de produção: você tem caixas (array)
+                  passando por diferentes estações (métodos). Map troca o
+                  conteúdo das caixas, filter remove caixas que não atendem
+                  critérios, reduce junta todas as caixas em uma só.
+                </p>
+              </div>
+
+              <div class="exemplo-pratico">
+                <h4><i class="fas fa-code"></i> Exemplo Prático:</h4>
+
+                <div class="demonstracao-viva">
+                  <div class="demo-container">
+                    <div class="demo-controls">
+                      <h4>Manipulação de Array:</h4>
+                      <div class="control-group">
+                        <label>Array Original:</label>
+                        <div
+                          style="
+                            background: rgba(255, 255, 255, 0.05);
+                            padding: 10px;
+                            border-radius: 6px;
+                            font-family: 'JetBrains Mono', monospace;
+                            font-size: 0.9rem;
+                          "
+                        >
+                          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <label>Selecione uma operação:</label>
+                        <select
+                          id="array-operacao"
+                          onchange="executarOperacaoArray()"
+                        >
+                          <option value="">-- Selecione --</option>
+                          <option value="map">map(x => x * 2)</option>
+                          <option value="filter">filter(x => x > 5)</option>
+                          <option value="reduce">
+                            reduce((a, b) => a + b)
+                          </option>
+                          <option value="find">find(x => x > 7)</option>
+                          <option value="some">some(x => x > 9)</option>
+                          <option value="every">every(x => x > 0)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="demo-preview">
+                      <div style="text-align: center">
+                        <h4 style="margin-bottom: 15px">Resultado:</h4>
+                        <div
+                          id="array-resultado"
+                          style="
+                            background: rgba(240, 219, 79, 0.1);
+                            border: 1px solid rgba(240, 219, 79, 0.3);
+                            border-radius: 8px;
+                            padding: 20px;
+                            min-height: 100px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-family: 'JetBrains Mono', monospace;
+                            font-size: 1.1rem;
+                          "
+                        >
+                          Selecione uma operação para ver o resultado
+                        </div>
+
+                        <div
+                          id="array-explicacao"
+                          style="
+                            margin-top: 15px;
+                            padding: 10px;
+                            background: rgba(255, 255, 255, 0.05);
+                            border-radius: 6px;
+                            font-size: 0.9rem;
+                            color: #888;
+                            text-align: left;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tabela-propriedades">
+                  <h4>📋 Métodos Funcionais de Array:</h4>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Método</th>
+                        <th>Descrição</th>
+                        <th>Exemplo</th>
+                        <th>Retorna</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>map()</td>
+                        <td>Transforma cada elemento</td>
+                        <td class="exemplo">[1,2,3].map(x => x*2)</td>
+                        <td class="exemplo">[2,4,6]</td>
+                      </tr>
+                      <tr>
+                        <td>filter()</td>
+                        <td>Filtra elementos por condição</td>
+                        <td class="exemplo">[1,2,3].filter(x => x>1)</td>
+                        <td class="exemplo">[2,3]</td>
+                      </tr>
+                      <tr>
+                        <td>reduce()</td>
+                        <td>Reduz array a um único valor</td>
+                        <td class="exemplo">[1,2,3].reduce((a,b) => a+b)</td>
+                        <td class="exemplo">6</td>
+                      </tr>
+                      <tr>
+                        <td>find()</td>
+                        <td>
+                          Encontra primeiro elemento que satisfaz condição
+                        </td>
+                        <td class="exemplo">[1,2,3].find(x => x>2)</td>
+                        <td class="exemplo">3</td>
+                      </tr>
+                      <tr>
+                        <td>some()</td>
+                        <td>Testa se algum elemento satisfaz condição</td>
+                        <td class="exemplo">[1,2,3].some(x => x>2)</td>
+                        <td class="exemplo">true</td>
+                      </tr>
+                      <tr>
+                        <td>every()</td>
+                        <td>Testa se todos elementos satisfazem condição</td>
+                        <td class="exemplo">[1,2,3].every(x => x>0)</td>
+                        <td class="exemplo">true</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Recursos Adicionais -->
+          <section class="recursos-adicionais">
+            <h3>
+              <i class="fas fa-graduation-cap"></i> Projetos para Praticar
+            </h3>
+            <p>Aplique seus conhecimentos com estes projetos práticos:</p>
+
+            <div class="recursos-lista">
+              <div class="recurso-item">
+                <h4><i class="fas fa-tasks"></i> To-Do List</h4>
+                <p>
+                  Lista de tarefas com adição, remoção, marcação de concluído e
+                  armazenamento local.
+                </p>
+              </div>
+
+              <div class="recurso-item">
+                <h4>
+                  <i class="fas fa-calculator"></i> Calculadora Científica
+                </h4>
+                <p>
+                  Calculadora com operações básicas e funções matemáticas
+                  avançadas.
+                </p>
+              </div>
+
+              <div class="recurso-item">
+                <h4><i class="fas fa-gamepad"></i> Jogo da Memória</h4>
+                <p>
+                  Jogo de memória com cartas que viram ao clicar e sistema de
+                  pontuação.
+                </p>
+              </div>
+
+              <div class="recurso-item">
+                <h4><i class="fas fa-cloud-sun"></i> App de Clima</h4>
+                <p>
+                  Aplicativo que mostra previsão do tempo usando API pública.
+                </p>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px">
+              <a
+                href="../index.html#laboratorio"
+                class="btn-primary"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 10px;
+                  background: linear-gradient(90deg, #f0db4f, #f7df1e);
+                  color: #333;
+                "
+              >
+                <i class="fas fa-flask"></i> Praticar no Laboratório
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <i class="fas fa-code"></i>
+            <span>FrontEnd<span class="logo-accent">Master</span>Path</span>
+          </div>
+          <p class="footer-desc">
+            Domine JavaScript do zero ao avançado com projetos práticos.
+          </p>
+          <div class="footer-copyright">
+            <p>&copy; 2023 FrontEnd Master Path. Continue praticando!</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Script específico para a página JavaScript
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sistema de navegação
+        const navLinks = document.querySelectorAll(".nav-link");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinksContainer = document.querySelector(".nav-links");
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            if (this.hash !== "") {
+              e.preventDefault();
+              const targetId = this.hash;
+              const targetElement = document.querySelector(targetId);
+
+              if (targetElement) {
+                navLinks.forEach((l) => l.classList.remove("active"));
+                this.classList.add("active");
+
+                window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: "smooth",
+                });
+
+                if (window.innerWidth < 768 && navLinksContainer) {
+                  navLinksContainer.style.display = "none";
+                }
+              }
+            }
+          });
+        });
+
+        if (menuToggle && navLinksContainer) {
+          menuToggle.addEventListener("click", function () {
+            if (navLinksContainer.style.display === "flex") {
+              navLinksContainer.style.display = "none";
+            } else {
+              navLinksContainer.style.display = "flex";
+              navLinksContainer.style.flexDirection = "column";
+              navLinksContainer.style.position = "absolute";
+              navLinksContainer.style.top = "100%";
+              navLinksContainer.style.left = "0";
+              navLinksContainer.style.width = "100%";
+              navLinksContainer.style.backgroundColor = "var(--bg-primary)";
+              navLinksContainer.style.padding = "20px";
+              navLinksContainer.style.borderTop =
+                "1px solid var(--border-color)";
+              navLinksContainer.style.gap = "15px";
+            }
+          });
+        }
+
+        // Console JavaScript interativo
+        window.executarNoConsole = function () {
+          const input = document.getElementById("js-input");
+          const consoleDiv = document.getElementById("js-console");
+
+          if (!input.value.trim()) return;
+
+          try {
+            // Adicionar entrada do usuário
+            const entrada = document.createElement("div");
+            entrada.className = "console-line";
+            entrada.innerHTML = `<span style="color: #f0db4f">></span> ${input.value}`;
+            consoleDiv.appendChild(entrada);
+
+            // Executar código
+            const resultado = eval(input.value);
+
+            // Adicionar resultado
+            const saida = document.createElement("div");
+            saida.className = "console-line";
+            saida.innerHTML = `<span style="color: #00ff88">< ${resultado}</span>`;
+            consoleDiv.appendChild(saida);
+
+            // Limpar input
+            input.value = "";
+
+            // Scroll para baixo
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+          } catch (error) {
+            const erro = document.createElement("div");
+            erro.className = "console-line";
+            erro.innerHTML = `<span style="color: #ff0055">! ${error.message}</span>`;
+            consoleDiv.appendChild(erro);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+          }
+        };
+
+        // Permitir Enter no console
+        document
+          .getElementById("js-input")
+          ?.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              executarNoConsole();
+            }
+          });
+
+        // Demo variáveis - atualizar valores dinamicamente
+        function atualizarValoresVariaveis() {
+          // Atualizar contador
+          const contadorEl = document.getElementById("valor-contador");
+          if (contadorEl) {
+            let valor = parseInt(contadorEl.textContent);
+            valor = (valor + 1) % 100;
+            contadorEl.textContent = valor;
+          }
+
+          // Atualizar mensagem
+          const mensagemEl = document.getElementById("valor-mensagem");
+          if (mensagemEl) {
+            const mensagens = [
+              '"Olá!"',
+              '"JavaScript!"',
+              '"FrontEnd!"',
+              '"Master!"',
+              '"Path!"',
+            ];
+            const atual = mensagemEl.textContent;
+            const index = mensagens.indexOf(atual);
+            const proxima = mensagens[(index + 1) % mensagens.length];
+            mensagemEl.textContent = proxima;
+          }
+        }
+
+        // Atualizar valores a cada 3 segundos
+        setInterval(atualizarValoresVariaveis, 3000);
+
+        // Executar exemplo de variáveis
+        window.executarExemploVariaveis = function () {
+          const resultadoEl = document.getElementById("resultado-variaveis");
+          if (!resultadoEl) return;
+
+          try {
+            let a = 10;
+            let b = 5;
+
+            let output = "";
+            output += `Soma: ${a + b}\n`;
+            output += `Subtração: ${a - b}\n`;
+            output += `Multiplicação: ${a * b}\n`;
+            output += `Divisão: ${a / b}\n`;
+            output += `Resto: ${a % b}\n`;
+            output += `Exponenciação: ${a ** b}`;
+
+            resultadoEl.textContent = output;
+          } catch (error) {
+            resultadoEl.textContent = `Erro: ${error.message}`;
+          }
+        };
+
+        // Quiz variáveis
+        window.verificarRespostaVariaveis = function () {
+          const opcoes = document.querySelectorAll(".quiz-opcao");
+          const feedback = document.querySelector(".quiz-feedback");
+          let respostaSelecionada = null;
+
+          opcoes.forEach((opcao) => {
+            if (opcao.classList.contains("selecionada")) {
+              respostaSelecionada = opcao.dataset.resposta;
+            }
+          });
+
+          if (!respostaSelecionada) {
+            feedback.className = "quiz-feedback incorreta";
+            feedback.textContent =
+              "Por favor, selecione uma resposta antes de verificar.";
+            return;
+          }
+
+          if (respostaSelecionada === "escopo") {
+            feedback.className = "quiz-feedback correta";
+            feedback.innerHTML =
+              "🎉 Correto!<br><br><strong>let</strong> e <strong>const</strong> têm escopo de bloco (dentro de {}), enquanto <strong>var</strong> tem escopo de função ou global. Isso faz com que let/const sejam mais previsíveis e evitem bugs comuns.";
+          } else {
+            feedback.className = "quiz-feedback incorreta";
+            feedback.innerHTML =
+              "❌ Não é essa a resposta.<br><br>A diferença principal está no <strong>escopo</strong>: let e const têm escopo de bloco, var tem escopo de função. Isso afeta onde as variáveis podem ser acessadas e modificadas.";
+          }
+        };
+
+        // Selecionar opções do quiz
+        const opcoesQuiz = document.querySelectorAll(".quiz-opcao");
+        opcoesQuiz.forEach((opcao) => {
+          opcao.addEventListener("click", function () {
+            opcoesQuiz.forEach((o) => o.classList.remove("selecionada"));
+            this.classList.add("selecionada");
+          });
+        });
+
+        // Demo estruturas de controle
+        window.atualizarDecisao = function () {
+          const hora = parseInt(document.getElementById("hora-dia").value);
+          const clima = document.getElementById("clima").value;
+          const fimSemana =
+            document.getElementById("fim-semana").value === "true";
+
+          let decisao = "";
+          let codigo = "";
+
+          // Lógica de decisão
+          if (fimSemana) {
+            decisao = "É fim de semana! 🎉 ";
+            if (clima === "sol") {
+              decisao += "Dia perfeito para um passeio no parque!";
+              codigo = `if (fimSemana && clima === 'sol') {\n  return "Passeio no parque";\n}`;
+            } else if (clima === "chuva") {
+              decisao += "Que tal um filme em casa com pipoca?";
+              codigo = `if (fimSemana && clima === 'chuva') {\n  return "Filme em casa";\n}`;
+            } else {
+              decisao += "Bom dia para ler um livro ou estudar.";
+              codigo = `if (fimSemana) {\n  return "Ler ou estudar";\n}`;
+            }
+          } else {
+            // Dia de semana
+            if (hora < 9) {
+              decisao =
+                "Bom dia! Hora de tomar café e se preparar para o trabalho.";
+              codigo = `if (hora < 9) {\n  return "Café da manhã e trabalho";\n}`;
+            } else if (hora >= 9 && hora < 12) {
+              decisao = "Hora de trabalhar! Foco nas tarefas importantes.";
+              codigo = `if (hora >= 9 && hora < 12) {\n  return "Trabalhar";\n}`;
+            } else if (hora >= 12 && hora < 14) {
+              decisao = "Hora do almoço! Descanse e se alimente bem.";
+              codigo = `if (hora >= 12 && hora < 14) {\n  return "Almoçar";\n}`;
+            } else if (hora >= 14 && hora < 18) {
+              decisao = "Volta ao trabalho! Reuniões e tarefas da tarde.";
+              codigo = `if (hora >= 14 && hora < 18) {\n  return "Trabalhar à tarde";\n}`;
+            } else {
+              decisao = "Fim do dia! Hora de relaxar e descansar.";
+              codigo = `if (hora >= 18) {\n  return "Relaxar";\n}`;
+            }
+
+            // Adicionar consideração do clima
+            if (clima === "chuva") {
+              decisao += " Leve um guarda-chuva!";
+              codigo += `\n\nif (clima === 'chuva') {\n  return decisao + " Leve guarda-chuva";\n}`;
+            }
+          }
+
+          document.getElementById("decisao-texto").textContent = decisao;
+          document.getElementById("decisao-codigo").textContent = codigo;
+        };
+
+        // Executar exemplos de estruturas
+        window.executarIfElse = function () {
+          try {
+            let nota = 8;
+            let situacao;
+
+            if (nota >= 7) {
+              situacao = "Aprovado";
+            } else if (nota >= 5) {
+              situacao = "Recuperação";
+            } else {
+              situacao = "Reprovado";
+            }
+
+            console.log("Resultado if/else:", situacao);
+            alert(`Nota: ${nota}\nSituação: ${situacao}`);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        window.executarLoops = function () {
+          try {
+            console.log("For loop:");
+            for (let i = 0; i < 5; i++) {
+              console.log("Número:", i);
+            }
+
+            console.log("\nWhile loop:");
+            let contador = 0;
+            while (contador < 3) {
+              console.log("Contando:", contador);
+              contador++;
+            }
+
+            alert("Verifique o console para ver os resultados dos loops!");
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        window.executarSwitch = function () {
+          try {
+            let dia = "segunda";
+            let mensagem;
+
+            switch (dia) {
+              case "segunda":
+                mensagem = "Começo da semana!";
+                break;
+              case "sexta":
+                mensagem = "Sextou! 🎉";
+                break;
+              default:
+                mensagem = "Dia normal";
+            }
+
+            console.log("Resultado switch:", mensagem);
+            alert(`Dia: ${dia}\nMensagem: ${mensagem}`);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        // Mini projeto calculadora
+        window.executarCalculadora = function () {
+          const codigoEl = document.getElementById("calculadora-code");
+          const resultadoEl = document.getElementById("calculadora-resultado");
+
+          if (!codigoEl || !resultadoEl) return;
+
+          try {
+            // Extrair função do código
+            const codigo = codigoEl.textContent;
+
+            // Adicionar função ao contexto de execução
+            eval(codigo);
+
+            // Testar a função
+            const testes = [
+              { args: [10, 5, "+"], esperado: 15 },
+              { args: [10, 5, "-"], esperado: 5 },
+              { args: [10, 5, "*"], esperado: 50 },
+              { args: [10, 5, "/"], esperado: 2 },
+              { args: [10, 0, "/"], esperado: "Operação inválida" },
+            ];
+
+            let output = "";
+            let acertos = 0;
+
+            testes.forEach((teste, i) => {
+              const resultado = calcular(...teste.args);
+              const correto = resultado === teste.esperado;
+
+              if (correto) acertos++;
+
+              output += `Teste ${i + 1}: calcular(${teste.args.join(
+                ", "
+              )}) = ${resultado}`;
+              output += correto
+                ? " ✅\n"
+                : ` ❌ (esperado: ${teste.esperado})\n`;
+            });
+
+            output += `\nResultado: ${acertos}/${testes.length} testes passaram`;
+
+            if (acertos === testes.length) {
+              output += " 🎉 Excelente!";
+            } else if (acertos >= testes.length - 1) {
+              output += " 👍 Quase lá!";
+            } else {
+              output += " 💡 Continue tentando!";
+            }
+
+            resultadoEl.textContent = output;
+          } catch (error) {
+            resultadoEl.textContent = `Erro: ${error.message}\n\nCertifique-se de que a função calcular() está definida corretamente.`;
+          }
+        };
+
+        // Demo DOM
+        window.atualizarDOM = function () {
+          const elemento = document.getElementById("elemento-dom");
+          const texto = document.getElementById("dom-texto").value;
+          const cor = document.getElementById("dom-cor").value;
+          const tamanho = document.getElementById("dom-tamanho").value;
+
+          if (elemento) {
+            elemento.textContent = texto;
+            elemento.style.color = cor;
+            elemento.style.fontSize = `${tamanho}px`;
+
+            // Atualizar valor do tamanho
+            document.getElementById(
+              "tamanho-valor"
+            ).textContent = `${tamanho}px`;
+          }
+        };
+
+        window.adicionarElemento = function () {
+          const container = document.getElementById("dom-demo");
+          if (!container) return;
+
+          const novoElemento = document.createElement("div");
+          novoElemento.className = "novo-elemento";
+          novoElemento.style.cssText = `
+                    padding: 10px;
+                    margin: 5px;
+                    background: rgba(0, 255, 136, 0.2);
+                    border: 1px solid rgba(0, 255, 136, 0.5);
+                    border-radius: 6px;
+                    animation: fadeIn 0.5s ease;
+                    font-size: 0.9rem;
+                `;
+          novoElemento.textContent = `Novo elemento #${container.children.length}`;
+
+          container.appendChild(novoElemento);
+        };
+
+        window.removerElemento = function () {
+          const container = document.getElementById("dom-demo");
+          if (!container || container.children.length <= 2) return;
+
+          const ultimo = container.lastElementChild;
+          if (ultimo.id !== "elemento-dom") {
+            ultimo.style.animation = "fadeOut 0.3s ease";
+            setTimeout(() => ultimo.remove(), 300);
+          }
+        };
+
+        window.animarElemento = function () {
+          const elemento = document.getElementById("elemento-dom");
+          if (!elemento) return;
+
+          elemento.style.transform = "scale(1.1) rotate(5deg)";
+          elemento.style.boxShadow = "0 10px 20px rgba(0,0,0,0.3)";
+
+          setTimeout(() => {
+            elemento.style.transform = "scale(1) rotate(0deg)";
+            elemento.style.boxShadow = "none";
+          }, 500);
+        };
+
+        // Configurar slider de tamanho
+        const tamanhoSlider = document.getElementById("dom-tamanho");
+        if (tamanhoSlider) {
+          tamanhoSlider.addEventListener("input", function () {
+            document.getElementById(
+              "tamanho-valor"
+            ).textContent = `${this.value}px`;
+          });
+        }
+
+        // Demo eventos
+        let eventosAtivos = false;
+        let cliqueCount = 0;
+
+        window.ativarEventos = function () {
+          if (eventosAtivos) return;
+          eventosAtivos = true;
+
+          const area = document.getElementById("area-eventos");
+          const botao = document.getElementById("botao-evento");
+          const mensagem = document.getElementById("evento-mensagem");
+          const cliqueCountEl = document.getElementById("clique-count");
+          const mousePosEl = document.getElementById("mouse-pos");
+          const teclaInfo = document.getElementById("tecla-info");
+          const teclaLetra = document.getElementById("tecla-letra");
+
+          if (!area || !botao) return;
+
+          // Atualizar mensagem
+          mensagem.innerHTML =
+            '<h4 style="margin-bottom: 10px;">Eventos Ativos! 🎮</h4><p>Clique, passe o mouse, pressione teclas...</p>';
+
+          // Evento de clique no botão
+          botao.addEventListener("click", function (e) {
+            cliqueCount++;
+            cliqueCountEl.textContent = cliqueCount;
+
+            this.style.transform = "scale(0.95)";
+            setTimeout(() => (this.style.transform = "scale(1)"), 100);
+
+            // Efeito visual
+            const particulas = document.createElement("div");
+            particulas.style.cssText = `
+                        position: absolute;
+                        top: ${e.offsetY}px;
+                        left: ${e.offsetX}px;
+                        width: 20px;
+                        height: 20px;
+                        background: radial-gradient(circle, #f0db4f, transparent);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        animation: explode 0.5s ease-out forwards;
+                    `;
+            area.appendChild(particulas);
+
+            setTimeout(() => particulas.remove(), 500);
+          });
+
+          // Eventos de mouse na área
+          area.addEventListener("mousemove", function (e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            mousePosEl.textContent = `${Math.round(x)},${Math.round(y)}`;
+
+            // Efeito de rastro
+            const ponto = document.createElement("div");
+            ponto.style.cssText = `
+                        position: absolute;
+                        top: ${y}px;
+                        left: ${x}px;
+                        width: 4px;
+                        height: 4px;
+                        background: rgba(0, 255, 136, 0.5);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 1;
+                    `;
+            this.appendChild(ponto);
+
+            setTimeout(() => ponto.remove(), 1000);
+          });
+
+          area.addEventListener("mouseenter", function () {
+            this.style.borderColor = "rgba(0, 255, 136, 0.5)";
+            this.style.background = "rgba(0, 255, 136, 0.05)";
+          });
+
+          area.addEventListener("mouseleave", function () {
+            this.style.borderColor = "rgba(106, 17, 203, 0.3)";
+            this.style.background = "rgba(106, 17, 203, 0.1)";
+          });
+
+          // Evento de teclado
+          document.addEventListener("keydown", function (e) {
+            teclaInfo.style.display = "block";
+            teclaLetra.textContent = e.key;
+
+            // Efeito visual para tecla Enter e Escape
+            if (e.key === "Enter" || e.key === "Escape") {
+              area.style.boxShadow = "0 0 20px rgba(0, 255, 136, 0.5)";
+              setTimeout(() => (area.style.boxShadow = "none"), 200);
+            }
+          });
+
+          document.addEventListener("keyup", function () {
+            setTimeout(() => {
+              teclaInfo.style.display = "none";
+            }, 500);
+          });
+
+          // Adicionar estilos de animação
+          const estilo = document.createElement("style");
+          estilo.textContent = `
+                    @keyframes explode {
+                        0% { transform: scale(1); opacity: 1; }
+                        100% { transform: scale(3); opacity: 0; }
+                    }
+                    @keyframes fadeIn {
+                        from { opacity: 0; transform: translateY(10px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; transform: translateY(0); }
+                        to { opacity: 0; transform: translateY(10px); }
+                    }
+                `;
+          document.head.appendChild(estilo);
+
+          alert(
+            "Eventos ativados! Experimente clicar no botão, mover o mouse pela área ou pressionar teclas."
+          );
+        };
+
+        window.desativarEventos = function () {
+          eventosAtivos = false;
+          const mensagem = document.getElementById("evento-mensagem");
+          mensagem.innerHTML =
+            '<h4 style="margin-bottom: 10px;">Eventos Desativados</h4><p>Clique em "Ativar Eventos" para começar.</p>';
+
+          alert("Eventos desativados. Reinicie a página para um estado limpo.");
+        };
+
+        window.mostrarCodigoEventos = function () {
+          const codigo = `// Configurar eventos
+const botao = document.getElementById('meuBotao');
+const area = document.getElementById('minhaArea');
+
+// Evento de clique
+botao.addEventListener('click', function(event) {
+    console.log('Botão clicado!', event);
+    
+    // Efeito visual
+    this.style.transform = 'scale(0.95)';
+    setTimeout(() => this.style.transform = '', 100);
+});
+
+// Evento de mouse
+area.addEventListener('mousemove', function(event) {
+    console.log('Mouse em:', event.clientX, event.clientY);
+});
+
+area.addEventListener('mouseenter', function() {
+    this.style.backgroundColor = 'lightblue';
+});
+
+area.addEventListener('mouseleave', function() {
+    this.style.backgroundColor = '';
+});
+
+// Evento de teclado
+document.addEventListener('keydown', function(event) {
+    console.log('Tecla pressionada:', event.key);
+    
+    if (event.key === 'Escape') {
+        console.log('Escape!');
+    }
+});
+
+// Evento de formulário (se houver)
+const form = document.querySelector('form');
+if (form) {
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede recarregamento
+        console.log('Formulário enviado!');
+    });
+}`;
+
+          alert("Código de exemplo para eventos:\n\n" + codigo);
+        };
+
+        // Demo APIs
+        window.buscarUsuario = async function (id) {
+          const resultadoEl = document.getElementById("api-result");
+          if (!resultadoEl) return;
+
+          resultadoEl.innerHTML =
+            '<p style="color: #f0db4f; text-align: center;">Carregando usuário...</p>';
+
+          try {
+            const response = await fetch(
+              `https://jsonplaceholder.typicode.com/users/${id}`
+            );
+            const usuario = await response.json();
+
+            resultadoEl.innerHTML = `
+                        <h4 style="margin-top: 0; color: #00ff88;">Usuário #${
+                          usuario.id
+                        }</h4>
+                        <pre style="margin: 0; white-space: pre-wrap;">${JSON.stringify(
+                          usuario,
+                          null,
+                          2
+                        )}</pre>
+                        <div style="margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+                            <strong>Dados principais:</strong><br>
+                            Nome: ${usuario.name}<br>
+                            Email: ${usuario.email}<br>
+                            Empresa: ${usuario.company.name}<br>
+                            Cidade: ${usuario.address.city}
+                        </div>
+                    `;
+          } catch (error) {
+            resultadoEl.innerHTML = `<p style="color: #ff0055;">Erro ao buscar usuário: ${error.message}</p>`;
+          }
+        };
+
+        window.buscarUsuarioAleatorio = function () {
+          const idAleatorio = Math.floor(Math.random() * 10) + 1;
+          buscarUsuario(idAleatorio);
+        };
+
+        window.buscarVariosUsuarios = async function () {
+          const resultadoEl = document.getElementById("api-result");
+          if (!resultadoEl) return;
+
+          resultadoEl.innerHTML =
+            '<p style="color: #f0db4f; text-align: center;">Carregando 5 usuários...</p>';
+
+          try {
+            const responses = await Promise.all([
+              fetch("https://jsonplaceholder.typicode.com/users/1"),
+              fetch("https://jsonplaceholder.typicode.com/users/2"),
+              fetch("https://jsonplaceholder.typicode.com/users/3"),
+              fetch("https://jsonplaceholder.typicode.com/users/4"),
+              fetch("https://jsonplaceholder.typicode.com/users/5"),
+            ]);
+
+            const usuarios = await Promise.all(responses.map((r) => r.json()));
+
+            let html =
+              '<h4 style="margin-top: 0; color: #00ff88;">5 Usuários</h4>';
+            usuarios.forEach((usuario) => {
+              html += `
+                            <div style="margin-bottom: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 6px;">
+                                <strong>${usuario.name}</strong><br>
+                                Email: ${usuario.email}<br>
+                                Site: ${usuario.website}
+                            </div>
+                        `;
+            });
+
+            resultadoEl.innerHTML = html;
+          } catch (error) {
+            resultadoEl.innerHTML = `<p style="color: #ff0055;">Erro ao buscar usuários: ${error.message}</p>`;
+          }
+        };
+
+        // Demo arrays funcionais
+        window.executarOperacaoArray = function () {
+          const operacao = document.getElementById("array-operacao").value;
+          const resultadoEl = document.getElementById("array-resultado");
+          const explicacaoEl = document.getElementById("array-explicacao");
+
+          if (!operacao || !resultadoEl) return;
+
+          const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+          let resultado;
+          let explicacao = "";
+
+          switch (operacao) {
+            case "map":
+              resultado = array.map((x) => x * 2);
+              explicacao =
+                "O método <strong>map()</strong> cria um novo array com os resultados da função aplicada a cada elemento. Neste caso: cada número multiplicado por 2.";
+              break;
+            case "filter":
+              resultado = array.filter((x) => x > 5);
+              explicacao =
+                "O método <strong>filter()</strong> cria um novo array com elementos que passam no teste da função. Neste caso: números maiores que 5.";
+              break;
+            case "reduce":
+              resultado = array.reduce((a, b) => a + b);
+              explicacao =
+                "O método <strong>reduce()</strong> aplica uma função acumuladora, resultando em um único valor. Neste caso: soma de todos os números (1+2+...+10 = 55).";
+              break;
+            case "find":
+              resultado = array.find((x) => x > 7);
+              explicacao =
+                "O método <strong>find()</strong> retorna o primeiro elemento que satisfaz a condição. Neste caso: primeiro número maior que 7 (que é 8).";
+              break;
+            case "some":
+              resultado = array.some((x) => x > 9);
+              explicacao =
+                "O método <strong>some()</strong> testa se pelo menos um elemento satisfaz a condição. Neste caso: existe número maior que 9? (sim, 10)";
+              break;
+            case "every":
+              resultado = array.every((x) => x > 0);
+              explicacao =
+                "O método <strong>every()</strong> testa se todos elementos satisfazem a condição. Neste caso: todos números são maiores que 0? (sim)";
+              break;
+          }
+
+          resultadoEl.textContent = JSON.stringify(resultado);
+          explicacaoEl.innerHTML = explicacao;
+        };
+
+        // Desafio variáveis
+        window.abrirDesafioVariaveis = function () {
+          const codigo = `// Desafio: Calculadora de Dias de Vida
+// 1. Declare uma constante com seu nome
+const nome = "SeuNome";
+
+// 2. Declare uma variável let com sua idade
+let idade = 25;
+
+// 3. Calcule quantos dias você já viveu (idade * 365)
+let diasVividos = idade * 365;
+
+// 4. Exiba uma mensagem
+console.log(\`Olá \${nome}, você já viveu aproximadamente \${diasVividos} dias!\`);
+
+// Bônus: Considere anos bissextos (adicione idade / 4 dias)
+let diasComBissextos = diasVividos + Math.floor(idade / 4);
+console.log(\`Considerando anos bissextos: \${diasComBissextos} dias!\`);`;
+
+          alert(
+            "Desafio de Variáveis:\n\n" +
+              codigo +
+              "\n\nCopie este código para o console ou laboratório e experimente!"
+          );
+        };
+
+        // Animação de entrada dos cards
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate-in");
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        document.querySelectorAll(".conceito-card").forEach((card) => {
+          observer.observe(card);
+        });
+      });
+    </script>
+  </body>
+</html>
